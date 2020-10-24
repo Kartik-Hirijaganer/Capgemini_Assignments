@@ -1,0 +1,86 @@
+Kartik Hirijaganer
+Assignment NO1.
+
+section 1: Query / Find Documents
+
+q1) get all documents
+Ans : db.movies.find();
+
+q2) get all documents with writer set to "Quentin Tarantino"
+Ans : db.movies.find({writer:"Quentin Tarantino"});
+
+q3) get all documents where actors include "Brad Pitt"
+Ans : db.movies.find({actors:"Brad Pitt"});
+
+q4) get all documents with franchise set to "The Hobbit"
+Ans : db.movies.find({franchise:"The Hobbit"});
+
+q5) get all movies released in the 90s
+Ans : db.movies.find({"year":{$gte:1990}, "year":{$lt:2000}});
+
+q6) get all movies released before the year 2000 or after 2010
+Ans : db.movies.find({$or:[{"year":{$lt:2000}}, {"year":{$gt:2010}}]});
+
+
+section 2: Update Documents
+
+q1) add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."
+Ans : db.movies.update({"title":"The Hobbit: An Unexpected Journey"}, {$set:{"synopsis":"A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."}});
+
+q2) add a synopsis to "The Hobbit: The Desolation of Smaug" : "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."
+Ans : db.movies.update({"title":"The Hobbit: The Desolation of Smaug"}, {$set:{"synopsis":"The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."}});
+
+q3) add an actor named "Samuel L. Jackson" to the movie "Pulp Fiction"
+Ans : db.movies.update({"title":"Pulp Fiction"}, {$set:{"actor":"Samuel L. Jackson"}});
+
+section3: Text Search
+
+q1) find all movies that have a synopsis that contains the word "Bilbo"
+Ans : db.movies.createIndex({synopsis:"text"});
+      db.movies.find({$text:{$search:"Bilbo"}});
+
+q2) find all movies that have a synopsis that contains the word "Gandalf"
+Ans : db.movies.find({$text:{$search:"Gandalf"}});
+
+q3) find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf"
+Ans : db.movies.find({$text:{$search:"Bilbo-Gandalf"}});
+
+q4) find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
+Ans : db.movies.find({$text:{$search:"dwarves hobbit"}});
+
+q5) find all movies that have a synopsis that contains the word "gold" and "dragon"
+Ans : db.movies.find({$text:{$search:"gold hobbit"}});
+
+section4 : Delete Documents
+
+q1) delete the movie "Pee Wee Herman's Big Adventure"
+Ans : db.movies.remove({"title":"Pee Wee Herman's Big Adventure"});
+
+q2) delete the movie "Avatar"
+Ans : db.movies.remove({"title":"Avatar"});
+
+section5: Relationships
+
+q1) find all users
+Ans : db.users.find();
+
+q2) find all posts
+Ans : db.posts.find();
+
+q3) find all posts that was authored by "GoodGuyGreg"
+Ans : db.posts.find({username: "GoodGuyGreg"});
+
+q4) find all posts that was authored by "ScumbagSteve"
+Ans : db.posts.find({username: "ScumbagSteve"});
+
+q5) find all comments
+Ans : db.comments.find({username: "GoodGuyGreg"});
+
+q6) find all comments that was authored by "GoodGuyGreg"
+Ans : db.comments.find({username: "GoodGuyGreg"});
+
+q7) find all comments that was authored by "ScumbagSteve"
+Ans : db.comments.find({username: "ScumbagSteve"});
+
+q7) find all comments belonging to the post "Reports a bug in your code"
+Ans : db.comments.find({post:ObjectId("5f91bda2682e41a9a6872689")});
