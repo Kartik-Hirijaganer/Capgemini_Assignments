@@ -1,0 +1,134 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.navbar{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  background-color: #ff7a59;
+  color: #ffffff;
+}
+
+a{
+  display: block;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 1.5em;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+li{
+  display: inline-block;
+}
+
+.nav-list a:hover{
+  background-color: #303841;
+}
+
+/* Upper section started */
+.upper-section{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 400px;
+  background-color: #333;
+}
+
+.upper-section h1{
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 10px;
+}
+
+.upper-section p{
+  color: #be3144;
+  font-size: 20px;
+  font-weight: 10px;
+}
+
+/* project-section started */
+.project-section{
+  background-color: #ff7a59;
+  height: auto;
+  text-align: center;
+}
+
+.project-section h2{
+  font-size: 40px;
+  font-weight: 10px;
+  padding-top: 5%;
+  padding-bottom: 3%;
+  background-color: #ff7a59;
+  color: #ffffff;
+  text-align: center;
+}
+
+.project-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-gap: 30px;
+  /* width: 100%; */
+  max-width: 1000px;
+  margin-left: 20%;
+}
+
+img{
+  display: block;
+}
+
+.project-grid a{
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5em;
+  padding-bottom: 2%;
+  height: 500px;
+}
+
+.project-title{
+  background-color: #333333;
+  padding: 3%;
+}
+
+img{
+  height: 400px;
+  width: 100%;
+}
+
+/* contact section started */
+.contact{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+/* responsive */
+@media screen and (max-width:1100px){
+  .project-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+  }
+}
+
+@media screen and (max-width:700px){
+  .project-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+  }
+}

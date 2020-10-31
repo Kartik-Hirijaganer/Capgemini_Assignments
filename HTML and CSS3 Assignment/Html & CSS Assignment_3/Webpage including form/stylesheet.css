@@ -1,0 +1,37 @@
+body{
+  background-color:  #3fee0a;
+}
+.infoForm{
+  margin-left: 500px;
+  margin-right: 400px;
+  padding: 30px 120px;
+  background-color:#eaeaea;
+  border-radius: 5%;
+}
+h1{
+  font-size: 3em;
+}
+.title{
+  text-align: center;
+}
+table{
+  border-collapse: collapse;
+}
+td{
+  padding-top: 20px;
+  font-size: 15px;
+}
+#num{
+  width: 12em;
+}
+.submitButton{
+  display: block;
+  text-align: center;
+  margin-left: 100px;
+  width: 60%;
+  height: 40px;
+  border-radius: 10%;
+  background-color: #6ba2ce;
+  color: white;
+  font-size: 1.1em;
+}

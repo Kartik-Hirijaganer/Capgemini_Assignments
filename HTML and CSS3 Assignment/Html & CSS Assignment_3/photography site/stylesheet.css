@@ -1,0 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #333;
+}
+
+img{
+  width: 100%;
+  padding-top: 3%;
+}
+/* top area */
+.main-text{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 360px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #eee;
+}
+
+.main-image{
+  background-image: url("camera.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 360px;
+  margin-bottom: 10px;
+
+}
+
+/* images section with content */
+.caption{
+  text-align: center;
+  font-size: 20px;
+  padding: 3%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: #eee;
+  max-width: 100%;
+}
+
+.btn{
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  margin-top: 10%;
+  padding: 9%;
+  text-decoration: none;
+  font-size: 1.3em;
+  color: #fff;
+}
+
+.btn:hover{
+  background-color: #ccc;
+  color: #333;
+}

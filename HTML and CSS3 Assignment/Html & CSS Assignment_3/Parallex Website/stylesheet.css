@@ -1,0 +1,46 @@
+body, html{
+  height: 100%;
+}
+
+.parallax1{
+  margin: 0px;
+  background-image: url("japanCity.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.parallax2{
+  margin: 0px;
+  background-image: url("city2.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.content{
+  height: 200px;
+  background-color: #556d7c;
+  color: #fff;
+  font-size: 25px;
+  padding: 30px 10px;
+  
+}
+
+.text{
+  text-align: center;
+  color: red;
+}
+
+.header{
+  margin: 0px;
+  height: 15%;
+  padding-top: 10px;
+  text-align: center;
+  background-color: #556d7c;
+  color: #fff;
+}

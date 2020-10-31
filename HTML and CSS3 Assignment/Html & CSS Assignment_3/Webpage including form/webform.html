@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">Survey Form</h1>
+        <p class="title" style="font-size: 20px;">Tell us something about yourself</p>
+        </div>
+        <div class="infoForm">
+            
+            <form action="">
+                <table>
+                    <tr>
+                        <td><label for="name">Name:</label></td>
+                        <td><input type="text" id="name" name="name" placeholder="your name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="emailId">EmailId:</label></td>
+                        <td><input type="email" id="emailId" name="emailId" placeholder="enter your email-id" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="num">On a scale of 1 to 10, how was your day?</label></td>
+                        <td><input type="number" id="num" name="num" min="1" max="10" placeholder="enter a numerical value" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="personType">Are you a morning person?</label></td>
+                        <td>
+                            <input type="radio" id="personType" name="personType">Yes
+                            <input type="radio" id="personType" name="personType">No
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="exercise">At what time of the day do you exercise?</label></td>
+                        <td>
+                            <input type="radio" id="exercise" name="exercise">Morning<br>
+                            <input type="radio" id="exercise" name="exercise">Afternoon<br>
+                            <input type="radio" id="exercise" name="exercise">Evening
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="emotion">What emotions do you experience through the day?</label></td>
+                        <td>
+                            <select name="emotion" id="emotion">
+                                <option value="select">select</option>
+                                <option value="Excited">Excited</option>
+                                <option value="Enthuistic">Enthusitic</option>
+                                <option value="Elated">Elated</option>
+                                <option value="Loved">Loved</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="about">Tell something about yourself</label></td>
+                        <td><textarea name="about" id="about" cols="30" rows="5"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><button class="submitButton" id="submit" type="submit">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
