@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var year = prompt("Enter the year : ");
+      var counter = 20;
+      var leapYears = '';
+      function leapyear(year, counter) {
+          year = parseInt(year);
+        
+          while (counter > 0) {
+              if (year % 4 === 0 && (year % 100 !== 0 || ( year % 100 === 0 && year % 400 === 0))) {
+                  leapYears += year + ", ";
+                  year++;
+                  counter--;
+              }
+              else {
+                  year++;
+              }
+          }
+          return "The next 20 leap years are : " + leapYears;
+      }
+      // document.write(leapyear(year, counter));
+      document.getElementById("para").innerHTML = leapyear(year, counter);
+    </script>
+  </body>
+</html>

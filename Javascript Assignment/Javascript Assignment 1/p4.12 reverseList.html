@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var size = prompt("Enter the size of list: ");
+      var list = new Array(size);
+      for(var i=0; i<size; i++){
+        list[i] = prompt("Enter the "+i+" element");
+      }
+      function reverseList(myList){
+        list.reverse();
+        return myList;
+      }
+      // document.write(reverseList(list));
+      document.getElementById("para").innerHTML = reverseList(list);
+    </script>
+  </body>
+</html>

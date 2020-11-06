@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Question 1</title>
+    
+</head>
+<body>
+    <label for="input">Enter Any Number:</label>
+    <input id="input"> <br>
+    <button onclick="odd_even()">Check</button>
+
+    <script>
+        function odd_even(){
+        var no;
+        no=Number(document.getElementById("input").value);
+        if(no%2==0) {
+            alert("Even Number");
+        } else {
+            alert("Odd Number");
+        }
+            }
+
+    </script>
+</body>
+</html>

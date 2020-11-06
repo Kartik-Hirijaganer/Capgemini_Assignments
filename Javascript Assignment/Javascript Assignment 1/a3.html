@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table, td {
+        border: 1px solid black;
+      }
+      </style>
+  </head>
+  <body>
+    <table id="myTable">
+      <!-- <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+      </tr>
+      <tr> -->
+      <br>
+      <button type="button" onclick="createTable()">Try it</button>
+    </table>
+    
+    <script>
+      function createTable(){
+      var rows = prompt("Enter number of rows");
+      var cols = prompt("Enter number of columns");
+      var table = document.getElementById("myTable");
+      for(var i=0; i<rows; i++){
+        var row = table.insertRow(0);
+        for(var j=0; j<cols; j++){
+          var cell = row.insertCell(j);
+          cell.innerHTML = "row"+i+", col"+j;
+        }
+      }
+    }
+    </script>
+  </body>
+</html>

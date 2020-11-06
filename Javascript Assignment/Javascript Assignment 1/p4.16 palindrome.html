@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      function palindrome(){
+      var s1 = prompt("Enter the string: ");
+      var s2 = s1.split('').reverse().join('');
+      if(s1===s2){
+        return "The string "+s1+" is palindrome"
+      }
+      else if(s1!=s2){
+        return "The string "+s1+" is not a palindrome"
+      }
+    }
+    // document.write(palindrome());
+    document.getElementById("para").innerHTML = palindrome();
+    </script>
+  </body>
+</html>

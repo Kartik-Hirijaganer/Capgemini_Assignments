@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Odd position</title>
+</head>
+<body>
+    <h1>Odd position</h1>
+    <p id="demo"></p>
+
+    <script>
+        var a= [4,6,2,87,11,7,32,4,78,45,22,90,11];
+        document.getElementById("demo").innerHTML = oddArr(a);
+        
+        function oddArr (array) {
+            let arr=[];
+            for (let i = 0; i< array.length; i++) {
+                if (i%2!==0) {
+                    arr.push(array[i]);
+                }
+            }
+            return arr;
+        }
+    </script>
+</body>
+</html>

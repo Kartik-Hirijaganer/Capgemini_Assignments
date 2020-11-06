@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var arr = new Array(3);
+      for(var i=0; i<arr.length; i++){
+        arr[i] = prompt("Enter the "+i+" element: ");
+      }
+      var max = 0;
+      for(var j=0; j<arr.length; j++){
+        if(max < parseInt(arr[j])){
+          max = arr[j];
+        }
+      }
+      // document.write("Max number: "+max);
+      document.getElementById("para").innerHTML = "Max number: "+max;
+    </script>
+  </body>
+</html>

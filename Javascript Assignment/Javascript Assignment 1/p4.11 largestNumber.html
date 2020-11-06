@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var numberList = [];
+      var size = prompt("Enter the size of array: ");
+      for(var i=0; i<size; i++){
+        numberList[i] = prompt("Enter the "+i+" element: ")
+      }
+      // var max = 0;
+      function largest(list){
+        var max = 0;
+        for(var i=0; i<list.length; i++){
+          if(max < list[i]){
+            max = list[i];
+          }
+        }
+        return "The maximun number is: "+max;
+      }
+      // document.write(largest(numberList));
+      document.getElementById("para").innerHTML = largest(numberList);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var num = prompt("Enter the number: ");
+      var choice = prompt("Enter the choice: s/p");
+      if(choice==="s"){
+        //sum
+        var sum = 0;
+        for(var i=1; i<=num; i++){
+          sum += i;
+        }
+        document.getElementById("para").innerHTML=
+          "Total sum is: "+sum;
+      }
+      else if(choice==="p"){
+        //product
+        var product = 1;
+        for(var i=1; i<=num; i++){
+          product *= i;
+        }
+        document.getElementById("para").innerHTML=
+          "Total product is: "+product;
+      }
+      else{
+        document.getElementById("para").innerHTML=
+          "Invalid choice";
+      }
+    </script>
+  </body>
+</html>

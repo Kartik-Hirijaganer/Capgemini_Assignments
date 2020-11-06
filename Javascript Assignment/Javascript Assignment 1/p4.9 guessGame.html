@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var num = 15;
+      function guess(num){
+        var count=0;
+        var n = prompt("Enter your guess number: ");
+        var a = 0;
+        while(n != num){
+        
+          if(n>num){
+            n = prompt("Your number was too large.");
+            count++;
+          }
+          else if(n<num){
+            n = prompt("Your number was too small");
+            count++;
+          }
+        }
+        return "Total count: "+count;
+      }
+      // document.write(guess(num));
+      document.getElementById("para").innerHTML = guess(num);
+
+    </script>
+  </body>
+</html>

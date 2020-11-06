@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      // pig latim the -> hetay
+      function pigLatin(){
+        var str = "the quick brown fox";
+        var word = str.split(" ");
+        var latinWord = new Array();
+        for(var i=0; i<word.length; i++){
+          latinWord = reverseFirstLetter(word[i]);
+          var s1 = latinWord.join("");
+          document.write(s1);
+        }
+      }
+
+      function reverseFirstLetter(letter){
+        var letter = letter.split("");
+        var temp = letter[0];
+        for(var i=0; i<letter.length-1; i++){
+          letter[i] = letter[i+1];
+        }
+        letter[i] = temp+"ay ";
+        return letter;
+      }
+      pigLatin();
+    </script>
+  </body>
+</html>

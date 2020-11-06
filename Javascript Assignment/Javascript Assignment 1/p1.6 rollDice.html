@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+      <p id="para"></p>
+       <script>
+           function rollDice(){
+               var counter =0;
+               while(x!==6)
+               {
+                   var x= Math.ceil(Math.random()*6);
+                   counter++;
+               }
+               return counter;
+           }
+          //  console.log(rollDice());
+          document.getElementById("para").innerHTML = rollDice();
+       </script> 
+    </body>
+</html>
