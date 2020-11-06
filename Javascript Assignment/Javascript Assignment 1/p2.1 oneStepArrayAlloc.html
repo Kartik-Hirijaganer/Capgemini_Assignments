@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var len = 4
+      var arr = new Array(len);
+      for(let i = 0; i<len; i++)
+      {
+        arr[i] = Math.random()+" ";
+        }
+      // document.write(arr);
+      document.getElementById("para").innerHTML = arr;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var size = prompt("Enter the size of list: ");
+      var list = new Array(size);
+      for(var i=0; i<size; i++){
+        list[i] = prompt("Enter the "+i+" element");
+      }
+
+      document.write("*".repeat(10));
+      document .write("<br>");
+
+      for(var j=0; j<size; j++){
+        document.write("* "+list[j]+" *");
+        document.write("<br>");
+      }
+      document.write("*".repeat(10));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    
+    <!-- <script src="sample.js"></script> -->
+    <script>
+      function Rectangle(width, height){
+        this.width =  width;
+        this.height = height;
+      }
+      var rec1 = new Rectangle(200, 50);
+      var rec2 = new Rectangle(400, 100);
+
+      Rectangle.prototype.getArea = function(){
+        return this.width*this.height;
+      }
+
+      var r = new Rectangle(4, 5);
+      // this.height = 50;
+      r.height = 50;
+      print = function(){
+        console.log(r.getArea());
+      }();
+    </script>
+  </body>
+</html>

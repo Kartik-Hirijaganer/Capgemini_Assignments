@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var arr = [1,2,3,4,5,6];
+      var k = prompt("Enter the number of roation: ");
+
+      function rotateList(arr,k){
+        var len = arr.length;
+        for(var i=0; i<k; i++){
+          rotateOne(arr,len);
+        }
+        return "The array is : "+arr;
+      }
+
+      function rotateOne(a,len){
+        var temp = a[0];
+        for(var i=0; i<len-1; i++){
+          a[i] = a[i+1];
+        }
+        a[i] = temp;
+      }
+      // document.write(rotateList(arr,k));
+      document.getElementById("para").innerHTML = rotateList(arr,k);
+    </script>
+  </body>
+</html>

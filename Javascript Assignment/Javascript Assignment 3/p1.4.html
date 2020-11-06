@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    
+    <!-- <script src="sample.js"></script> -->
+    <script>
+      function Person(fname, lname){
+        this.fname=fname;
+        this.lname=lname;
+      }
+
+      var mike = new Person("mike", "smith");
+      print = function(){
+        console.log(mike.fname);
+        console.log(mike.lname);
+        mike.lname = "gold";
+        console.log(mike.lname);
+      }();
+    </script>
+  </body>
+</html>

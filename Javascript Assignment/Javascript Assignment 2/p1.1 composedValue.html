@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p>Result: <span id="result"></span></p>
+
+    <!-- <script src="p1.1 composedValue.js"></script> -->
+    <script>
+      //f1
+      function square(x){
+        return x*x;
+      }
+      //f2
+      function double(x){
+        return x*2;
+      }
+      //composedFn
+      function composedValue(f1,f2,value){
+        return f1(f2(value));
+      }
+      document.getElementById("result").innerHTML =
+      composedValue(square, double, 4);
+    </script>
+  </body>
+</html>

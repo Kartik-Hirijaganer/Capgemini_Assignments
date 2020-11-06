@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var arr = ["hello", "quick", "count"];
+      var count = 0;
+      var newArr = arr.map(check);
+      function check(str){
+        if(!str.includes("q")){
+          count += str.length;
+          return str;
+        }
+      }
+      // document.write(count);
+      document.getElementById("para").innerHTML = count;
+    </script>
+  </body>
+</html>

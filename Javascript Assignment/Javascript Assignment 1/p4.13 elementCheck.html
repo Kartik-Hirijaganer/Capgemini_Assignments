@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <p id="para"></p>
+    <script>
+      var myList = ["value1","value2", 4, 10, "key"];
+      function checkElement(list){
+        var flag = false;
+        var element = prompt("Enter the element: ");
+        element = parseInt(element);
+        for(var i=0; i<list.length; i++){
+          if(element === list[i]){
+            flag = true;
+          }
+        }
+
+        return flag;
+      }
+      // document.write(checkElement(myList));
+      document.getElementById("para").innerHTML = checkElement(myList);
+    </script>
+  </body>
+</html>
