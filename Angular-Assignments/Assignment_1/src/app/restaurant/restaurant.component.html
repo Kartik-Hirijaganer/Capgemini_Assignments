@@ -1,0 +1,21 @@
+<div *ngIf="choice===1" class="example-label">
+  <nav class="example-button-row">
+    <button (click)="onAdd()" mat-raised-button color="primary">
+      Add
+    </button>
+    <button (click)="onDelete()" mat-raised-button color="warn">
+      Delete
+    </button>
+    <button (click)="onEdit()" mat-raised-button color="accent">
+      Edit
+    </button>
+  </nav>  
+</div>
+
+<mat-nav-list>
+<div *ngFor="let res of list">
+  <mat-list-item>
+  <a routerLink="/menu">{{res}}</a>
+</mat-list-item>
+</div>
+</mat-nav-list>

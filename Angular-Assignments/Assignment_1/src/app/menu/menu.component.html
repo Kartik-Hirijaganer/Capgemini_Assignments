@@ -1,0 +1,25 @@
+<mat-menu #appMenu="matMenu" xPosition="after" yPosition="below">
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">Starter</button>
+  <button mat-menu-item [matMenuTriggerFor]="sub1Menu">Main Course</button>
+  <button mat-menu-item [matMenuTriggerFor]="sub2Menu">Desserts</button>
+</mat-menu>
+
+<button class="center" mat-flat-button color="primary" [matMenuTriggerFor]="appMenu">Menu</button>
+
+<mat-menu #subMenu="matMenu">
+<button mat-menu-item>Cheese Balls</button>
+<button mat-menu-item>Spring roll</button>
+<button mat-menu-item>Manchurian balls</button>
+</mat-menu>
+
+<mat-menu #sub1Menu="matMenu">
+<button mat-menu-item>Paneer Tikka</button>
+<button mat-menu-item>Veg Kolhapuri</button>
+<button mat-menu-item>Triple Schezwan</button>
+</mat-menu>
+
+<mat-menu #sub2Menu="matMenu">
+<button mat-menu-item>Icecream</button>
+<button mat-menu-item>Falooda</button>
+<button mat-menu-item>Lassi</button>
+</mat-menu>

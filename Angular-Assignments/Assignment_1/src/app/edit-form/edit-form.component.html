@@ -1,0 +1,14 @@
+<form class="edit-form" #editForm="ngForm" (ngSubmit)="onSubmit(editForm.value.resName, editForm.value.newName)" novalidate>
+  <!-- {{editForm.value | json}} -->
+  <div class="form-group">
+    <label for="name">Restaurant Title:</label>
+    <input type="text" class="form-control" name="resName" [(ngModel)]="editModel.resName">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="name">New Name:</label>
+    <input type="text" class="form-control" name="newName" [(ngModel)]="editModel.newName">
+  </div>
+  <br>
+  <button type="submit" mat-raised-button color="primary">Submit</button>
+</form>

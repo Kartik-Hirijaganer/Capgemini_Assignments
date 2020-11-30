@@ -1,0 +1,15 @@
+mat-grid-tile {
+  background: lightblue;
+}
+
+.example-button-row{
+  padding-right: 10px;
+}
+
+button{
+  margin: 20px;
+}
+
+mat-list-item{
+  background-color: #c0b3b3;
+}

@@ -1,0 +1,66 @@
+<div class="container-fluid mb-5">
+  <h1>Advertisement Form</h1>
+  <div>
+    <label>Search Box</label>
+    <input [(ngModel)]="searchText" placeholder="search text goes here">
+    <ul>
+      <li *ngFor="let c of this.service.adverArr.title | filter : searchText">
+        {{c}}
+      </li>
+    </ul>
+  </div>
+  <form #userForm="ngForm" *ngIf='!submitted' (ngSubmit)="onSubmit(userForm)" novalidate>
+
+    <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" #title="ngModel" id="title" class="form-control" name="title" [(ngModel)]="Model.title">
+    </div>
+
+    <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" #name="ngModel" required [class.is-invalid]="name.invalid && name.touched" class="form-control" name="name" id="name" [(ngModel)]="Model.name">
+
+    <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+    </div>
+
+    <div class="form-group">
+      <label id="category">Category</label>
+      <select (blue)="categoryValidate(category.value)" (change)="categoryValidate(category.value)" class="custom-select"  #category="ngModel" [class.is-invalid]="categoryHasError && category.touched" id="category" name="category" [(ngModel)]="Model.category">
+        <option value="default">I am interested in</option>
+        <option *ngFor="let category of categories">{{category}}</option>
+      </select>
+      <small class="text-danger" [class.d-none]="!categoryHasError || category.untouched">Please choose a category</small>
+    </div>
+
+    <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" #description="ngModel" class="form-control" id="description" name="description" [(ngModel)]="Model.description">
+    </div>
+  <div class="form-buttons">
+    <button [disabled]="userForm.form.invalid || categoryHasError" class="btn btn-primary" type="submit">Submit Form</button>
+
+    
+    <button class="btn btn-warning" (click)="onEdit()">Edit</button>
+    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+  </div>
+    <br><br>
+
+      <table>
+      <tr>
+        <td>Title</td>
+        <td>Name</td>
+        <td>Category</td>
+        <td>Description</td>
+      </tr>
+
+      <tr *ngFor="let value of this.service.adverArr">
+        <td>{{value.title}}</td>
+        <td>{{value.name}}</td>
+        <td>{{value.category}}</td>
+        <td>{{value.description}}</td>
+      </tr>
+      </table>
+
+    </form>
+
+</div>
