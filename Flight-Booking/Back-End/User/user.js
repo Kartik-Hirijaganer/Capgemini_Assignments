@@ -32,7 +32,7 @@ mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/user_proj
 // });
 
 //login method
-app.get('/user/login', async (req, res) => {
+app.post('/user/login', async (req, res) => {
   const {emailId, password} = req.body;
 
   try{
@@ -46,7 +46,7 @@ app.get('/user/login', async (req, res) => {
     console.log(err);
     //res.status(200).json(err);
     const error = auth.handleErrors(err);
-    res.status(400).json({error});
+    res.status(400).json(error);
     console.log(error);
   }
 });
@@ -55,7 +55,7 @@ app.get('/user/login', async (req, res) => {
 
 //POST method when a new user will signUp
 const maxAge = auth.maxAge;
-app.post('/user/add', async (req, res)=>{
+app.post('/user/signUp', async (req, res)=>{
   /*
     Form form we will send date as date-type we will convert it to string and store in db.
     date format: year/ month/ date
