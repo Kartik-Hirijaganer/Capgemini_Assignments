@@ -1,92 +1,114 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-//const axios = require('axios');
+const auth = require('./auth');
+const cookieParser = require('cookie-parser');
 
+//middleware
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 const mongoose = require('mongoose');
-//const { response } = require('express');
 
-require('./userDataModel');//acquiring our schema file
-const user = mongoose.model("user");//assigning schema model to user constant
+const user = require('./userDataModel');//acquiring our schema file
+//const user = mongoose.model("user");//assigning schema model to user constant
 
 //connecting mongoDB atlas dbName: user_project, password:1234
 mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/user_project?retryWrites=true&w=majority', ()=>{
   console.log('Database connected');
 });
+                              //GET  METHOD
 
+//will get user by userid
+//not used
+// app.get('/user/:id', (req, res) => {
+//   user.findById(req.params.id).then((data)=>{
+//     res.send(data);
+//   }).catch(err => {
+//     if(err){
+//       throw err;
+//     }
+//   })
+// });
 
-                              //GET ALL METHOD
-/*
-  Will get all booked flights from booking microservice.
-  angular will send id of that user
-*/
-app.get('/user/allBookings/:id', (req, res) => {
-  let booking= [];
-  user.find(req.params.id).then((data) => {
-    booking = data.bookings;
-  }).catch((err) => {
-    if(err){
-      throw err;
-    }
-  });
-  console.log(booking);
-  res.send(booking);
+//login method
+app.get('/user/login', async (req, res) => {
+  const {emailId, password} = req.body;
+
+  try{
+    const myuser = await user.login(emailId, password);
+    const token = auth.createToken(myuser._id);
+    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
+    res.status(200).json({userId: myuser._id});
+    console.log('success');
+  }
+  catch (err) {
+    console.log(err);
+    //res.status(200).json(err);
+    const error = auth.handleErrors(err);
+    res.status(400).json({error});
+    console.log(error);
+  }
 });
 
-// {"_id":{"$oid":"5fc3487a7878d130345232e5"},"firstName":"Yash","lastName":"Kholi","dateOfBirth":"2017-03-17","mobileNo":{"$numberLong":"9135680254"},"gender":"male","bookings":[]}
 
 
-//user emailid and password will be send to authentication microservice
-var emailId = '';
-var password = '';
-
-                          //POST method when a new user will signUp.
-app.post('/user/add', (req, res)=>{
-  emailId = req.body.emailId;
-  password = req.body.password;
-  //console.log(`email:${emailId}, password:${password}`);
+//POST method when a new user will signUp
+const maxAge = auth.maxAge;
+app.post('/user/add', async (req, res)=>{
   /*
     Form form we will send date as date-type we will convert it to string and store in db.
     date format: year/ month/ date
-    ISODate doesnot work in typescript
-    Date output 2017-03-17T00:00:00.000Z
   */
-  var newDate = new Date(req.body.dateOfBirth);
-  var date = newDate.toDateString();
+  // var newDate = new Date(req.body.dateOfBirth);
+  // var date = newDate.toDateString();
  
-  var obj = {bookingId : req.body.bookingId};
-  var newUser = {
+  var newUserObj = {
     firstName:req.body.firstName.toLowerCase(),
     lastName:req.body.lastName.toLowerCase(),
-    dateOfBirth:date,
+    dateOfBirth:req.body.dateOfBirth,
     mobileNo:req.body.mobileNo,
-    gender:req.body.gender.toLowerCase()
+    gender:req.body.gender.toLowerCase(),
+    emailId:req.body.emailId,
+    password:req.body.password,
+    userType:"user"
   }
   
-  var user1 = new user(newUser);
-  user1.bookings.push(obj);
-  user1.save().then(() =>{
-    console.log('new user added');
-  }).catch((err)=>{
-    if(err){
-      throw err;
-    }
-  });
-  res.send(`New user added with emailId: ${emailId} and password: ${password}`);
+  var user1 = new user(newUserObj);
+  // const newUser = user1.save().then(() =>{
+  //   console.log('new user added');
+    
+  // }).catch((err)=>{
+  //   if(err){
+  //     throw err;
+  //   }
+  // });
+  try{
+    const newUser = await user.create(user1);
+    const token = auth.createToken(newUser._id);
+    res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
+    res.sendStatus(200).json({userId: newUser._id});
+    console.log("new user created with cookie");
+  }catch (err) {
+    //res.send(err);
+    const error = auth.handleErrors(err);
+    res.status(400).json({Error: error.emailId});
+    console.log(error.emailId);
+  } 
 });
 
-//DELETE
-app.delete('user/delete', (req, res) => {
-  res.send('delete request');
-})
+/*
+  Will take email and password check in database if present will generate a token.
+*/
 
 
 
-app.listen(5000, (err) => {
+
+
+
+app.listen(3200, (err) => {
   if(err){
     console.log(err);
   }
-  console.log("Listening to port 5000");
+  console.log("Listening to port 3200");
 });

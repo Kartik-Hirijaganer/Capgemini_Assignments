@@ -1,26 +1,4 @@
-
-
-
-
-
-
-
-
-
-app.get('/admin/flights/:flightName', (req, res)=>{
-  axios.get("http://localhost:3000/flights/"+req.params.flightName).then((response) => {
-    console.log(response);
-    res.json("success");
-  }).catch(err => {
-    if(err){
-      throw err;
-    }
-  })
-});
-
-
-
-
-
-
-
+//flight
+// 5fc0b96885b6001a5ce49191
+//balwant
+// 5fc3487a7878d130345232e7

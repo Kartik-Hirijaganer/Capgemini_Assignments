@@ -8,8 +8,8 @@ app.use(bodyParser.json());
                             /* GET Methods */
 
 //get flight by flightName
-app.get('/admin/flights/:flightName', (req, res)=>{
-  axios.get("http://localhost:3000/flights/"+req.params.flightName).then((response) => {
+app.get('/admin/flight/:flightName', (req, res)=>{
+  axios.get("http://localhost:3000/flight/"+req.params.flightName).then((response) => {
     console.log(response.data[0]);
     //create object of required parameters
     var flightObject = { Name: response.data[0].flightName, air: response.data[0].airLine };
@@ -109,9 +109,9 @@ app.delete('/admin/delete/flight/:flightName', (req, res) => {
 
 
 
-app.listen(4000, (err) => {
+app.listen(3100, (err) => {
   if(err){
     console.log(err);
   }
-  console.log("Listening to port 4000");
+  console.log("Listening to port 3100");
 })

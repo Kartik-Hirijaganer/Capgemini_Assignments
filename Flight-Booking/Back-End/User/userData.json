@@ -1,11 +1,13 @@
 [
   {
     "firstName":"Yash",
+    "middleName":"Vinod",
     "lastName":"Kholi",
     "dateOfBirth":"2017-03-17",
     "mobileNo":9135680254,
     "gender":"male",
-    "bookings":[]
+    "emailId":"yash@gmail.com",
+    "password":"test123"
   },
   {
     "firstName":"Pratham",
@@ -13,7 +15,8 @@
     "dateOfBirth":"1990-03-27",
     "mobileNo":9135680254,
     "gender":"male",
-    "bookings":[]
+    "emailId":"pratham@gmail.com",
+    "password":"test123"
   },
   {
     "firstName":"Balwant",
