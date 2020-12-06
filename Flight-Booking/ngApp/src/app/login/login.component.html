@@ -1,34 +1,11 @@
-<!-- <mat-card class="login-card">
-  <mat-card-header>
-    <mat-card-title>Login</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form class="login">
-      <div>
-        <mat-label>Email</mat-label>
-        <input type="email" placeholder="Ex. pat@example.com">
-      </div>
-
-      <div>
-        <mat-label>Password</mat-label>
-        <input type="password" placeholder="">
-      </div>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="warn">Submit</button>
-  </mat-card-actions>
-</mat-card>
- -->
  <div class="py-5">
   <div class="row">
     <div class="col-md-6 mx-auto">
       <span class="anchor" id="formLogin"></span>
 
-      <!-- form card login -->
       <div class="card rounded-0">
         <div class="card-header">
-          <h3 class="mb-0">Login</h3>
+          <h3 class="mb-0 title">Login</h3>
         </div>
         <div class="card-body">
           <form #loginForm="ngForm" class="form">
@@ -45,9 +22,9 @@
             <button [disabled]="!loginForm.form.valid" (click)="loginUser()" type="button" class="btn btn-success float-center">Login</button>
           </form>
         </div>
-        <!--/card-block-->
+
       </div>
-      <!-- /form card login -->
+
     </div>
   </div>
 </div>

@@ -3,10 +3,9 @@
     <div class="col-md-6 mx-auto">
       <span class="anchor" id="formLogin"></span>
 
-
       <div class="card rounded-0">
         <div class="card-header">
-          <h3 class="mb-0">Register</h3>
+          <h3 class="mb-0 title">Register</h3>
         </div>
         <div class="card-body">
           <form #registerForm="ngForm" class="form">
@@ -35,15 +34,33 @@
             </div>
 
             <div class="form-group">
-              <label for="gender">Gender</label>
-              <input #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="male" name="gender" required value="male">
-              <label for="male">Male</label>
+              <label class="radio" for="gender">
+                <span>Gender </span>
+              </label>
+              <!-- <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="male" name="gender" required value="male">
+              <label class="radio" for="male">Male</label>
 
-              <input #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="female" name="gender" required value="female">
-              <label for="female">Female</label>
+              <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="female" name="gender" required value="female">
+              <label class="radio" for="female">Female</label>
 
-              <input #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="other" name="gender" required value="other">
-              <label for="other">Other</label>
+              <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="other" name="gender" required value="other">
+              <label class="radio" for="other">Other</label> -->
+              <label>
+                <input #gender="ngModel" class="with-gap" name="group3"  [(ngModel)]="registerUserData.gender" type="radio" checked required value="male" />
+                <span>Male</span>
+              </label>
+
+              <label>
+                <input #gender="ngModel" class="with-gap" name="group3"  [(ngModel)]="registerUserData.gender" type="radio" checked required value="female" />
+                <span>Female</span>
+              </label>
+
+              <label>
+                <input #gender="ngModel" class="with-gap" name="group3"  [(ngModel)]="registerUserData.gender" type="radio" checked required value="other" />
+                <span>Other</span>
+              </label>
+
+
               <small class="text-danger" [class.d-none]="gender.valid || gender.untouched">Gender required</small>
             </div>
 

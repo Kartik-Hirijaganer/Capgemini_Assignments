@@ -1,0 +1,17 @@
+.card-header{
+  background-color:	#32CD32;
+  color: #0c0c3d;
+}
+
+.title{
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  min-height: 50px;
+  padding-top: 6px;
+}
+
+label {
+  font-size: 15px;
+  color: #0c0c3d;
+}

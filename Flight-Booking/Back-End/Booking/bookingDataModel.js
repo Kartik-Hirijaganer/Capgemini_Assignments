@@ -45,23 +45,19 @@ mongoose.model('booking',{
   bookingId: {
     type: Number,
     required: true
+  },
+  userDetails : {
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
+      type:String,
+      required: true
+    },
+    dateOfBirth: {
+      type: String,
+      required: true
+    }
   }
-  // userDetails : {
-  //   firstName: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   lastName: {
-  //     type:String,
-  //     required: true
-  //   },
-  //   dateOfBirth: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   emailId: {
-  //     type: String,
-  //     required: true
-  //   }
-  // }
 });

@@ -72,7 +72,7 @@ app.post('/user/signUp', async (req, res)=>{
     const token = auth.createToken(newUser._id);
     //res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
     res.status(200).json({token: token, userId: newUser._id, userType: newUser.userType});
-    console.log("new user created with cookie");
+    console.log("new user created with token");
   }catch (err) {
     //res.send(err);
     const error = auth.handleErrors(err);

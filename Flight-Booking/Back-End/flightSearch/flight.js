@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require('cors');
 
 app.use(bodyParser.json());
+app.use(cors({origin: 'http://localhost:4200'}));
 
 const mongoose = require('mongoose');
 
@@ -15,7 +17,6 @@ mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/flight_pr
 });
 
                             /* GET Methods */
-
 //no current use
 //will get by flight id
 // app.get('/flight/:id', (req, res) => {
@@ -40,10 +41,10 @@ app.get('/flight/:flightName', (req, res)=>{
   })
 });
 
-//second get request to return all flights
+/*              get request to return all flights               */
 app.get('/flights', (req, res) => {
   flight.find().then((data) => {
-    res.json(data);
+    res.send(data);
   }).catch(err => {
     if(err){
       throw err;
@@ -51,16 +52,13 @@ app.get('/flights', (req, res) => {
   });
 });
 
-/* 
-  will take source and destination paramater
-  run find query
-*/
+/*              get request to return flights by source destination               */
 app.get("/flights/:source/:destination", (req, res) => {
   let source = req.params.source.toLowerCase();
   let dest = req.params.destination.toLowerCase();
 
   flight.find({source:source, destination: dest}).then((data)=>{
-    res.json(data);
+    res.send(data);
   }).catch(err => {
     if(err){
       throw err;
@@ -84,36 +82,33 @@ app.post('/flight/add', (req, res)=>{
   }
 
   var flight1 = new flight(newFlight);
-  flight1.save().then(() =>{
+  flight1.save().then((data) =>{
     console.log('new flight created');
+    res.send(data);
   }).catch((err)=>{
     if(err){
       throw err;
     }
   })
-  res.send("success flight added");
-
 });
 
                             /* PUT Methods */
-//put method to edit/update flight
-app.put('/flight/edit/:flightNameOld', (req, res) => {
-  let flightNameOld = req.params.flightNameOld; //to search flight based on flightName
+/*                    put method to edit/update flight                */
+app.put('/flight/edit/:id', (req, res) => {
 
-  //new flight properties.
-  let airLine = req.body.airLine;
-  let flightName = req.body.flightName;
-  let source = req.body.source;
-  let destination = req.body.destination;
-  let fare = req.body.fare;
-  let seatCount = req.body.seatCount;
-
+  var newFlight = {
+    airLine: req.body.airLine,
+    flightName: req.body.flightName,
+    source: req.body.source,
+    destination: req.body.destination,
+    fare: req.body.fare,
+    seatCount:req.body.seatCount
+  }
   //var update = { "$set": { "name": name, "genre": genre, "author": author, "similar": similar}}
-  flight.findOneAndUpdate({flightName: flightNameOld}, 
-    {"$set": {"airLine":airLine, "flightName":flightName, "source":source,                "destination":destination, "fare":fare, "seatCount":seatCount}
-    }).then((response) => {
-    res.send(`${flightName} flight updated`);
-    console.log('flight updated');
+  flight.findByIdAndUpdate(req.params.id, 
+    {"$set": newFlight}, {new: true}).then((response) => {
+    console.log(`flight updated`);
+    res.send(response.data);
   }).catch(err => {
     if(err){
       throw err;
@@ -122,17 +117,32 @@ app.put('/flight/edit/:flightNameOld', (req, res) => {
 });
 
                             /* DELETE Methods */
-//delete method to delete flight by flightName
+/*                         delete method to delete flight by flightName            */
 app.delete('/flight/delete/:flightName', (req, res) => {
-  flight.deleteOne({flightName: req.params.flightName}).then((response) => {
-    res.send(`${req.params.flightName} flight deleted`);
-    console.log("flight deleted");
+  flight.findOneAndRemove({flightName: req.params.flightName}).then((response) => {
+    console.log(`${req.params.flightName} flight deleted`);
+    res.send(response);
   }).catch(err => {
     if(err){
       throw err;
     }
   })
 });
+//current no use
+// app.delete('/flight/delete/:id', (req, res) => {
+//   flight.findByIdAndRemove(req.params.id).then((response) => {
+//     //res.send(`${req.params.flightName} flight deleted`);
+//     console.log("flight deleted");
+//     console.log(response);
+//     res.send(response);
+//   }).catch(err => {
+//     if(err){
+//       throw err;
+//     }
+//   })
+// });
+
+
 
 app.listen(3000, (err) => {
   if(err){

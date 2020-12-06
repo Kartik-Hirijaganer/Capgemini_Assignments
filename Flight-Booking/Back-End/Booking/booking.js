@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const axios = require('axios');
+//const axios = require('axios');
+const cors = require('cors');
 
 app.use(bodyParser.json());
+app.use(cors({origin: 'http://localhost:4200'}));
 
 const mongoose = require('mongoose');
 
@@ -78,39 +80,55 @@ app.get('/booking/allbookings/:userId', (req, res) => {
 var bookingId = 110;
 app.post("/booking/add/:flightName/:userId", (req, res)=>{
   let flightName = req.params.flightName;
-
+  console.log('inside booking post');
   var newBooking = {
     userId: mongoose.Types.ObjectId(req.params.userId),
     flight:{
       flightName: flightName,
-      airLine: '',
-      source: '',
-      destination: '',
-      fare: '',
+      airLine: req.body.flight.airLine,
+      source: req.body.flight.source,
+      destination: req.body.flight.destination,
+      fare: req.body.flight.fare,
+    },
+    userDetails:{
+      firstName: req.body.user.firstName,
+      lastName: req.body.user.lastName,
+      dateOfBirth: req.body.user.dateOfBirth
     },
     bookingId: bookingId
   }
 
-  axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
-    const f = flight.data;
-    newBooking = {
-      userId: req.params.userId,
-      flight:{
-        flightName: flightName,
-        airLine: f.airLine,
-        source: f.source,
-        destination: f.destination,
-        fare: f.fare,
-      },
-      bookingId: bookingId
-    }
+  // axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
+  //   const f = flight.data;
+  //   newBooking = {
+  //     userId: req.params.userId,
+  //     flight:{
+  //       flightName: flightName,
+  //       airLine: f.airLine,
+  //       source: f.source,
+  //       destination: f.destination,
+  //       fare: f.fare,
+  //     },
+  //     bookingId: bookingId
+  //   }
     
+    // var booking1 = new booking(newBooking);
+    // booking1.save().then(() =>{
+    // res.send("BookingId is :"+bookingId);
+    // bookingId++;
+    //console.log(bookingId);
+      // });
+    // });
+
     var booking1 = new booking(newBooking);
     booking1.save().then(() =>{
-    res.send("BookingId is :"+bookingId);
+    //res.send(bookingId);
+    var id = {
+      Id: bookingId
+    }
+    res.send(id);
     bookingId++;
-    //console.log(bookingId);
-      });
+    console.log('booking success');
     });
 });
 

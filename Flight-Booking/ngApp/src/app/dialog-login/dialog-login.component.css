@@ -1,0 +1,14 @@
+
+.box {
+  color: #fff;
+  font-size: 25px;
+  min-height: 200px;
+  min-width: 100px;
+}
+
+
+.btn {
+  margin-left: 20px;
+  background-color: #fff;
+  color: #02082c;
+}

@@ -1,69 +1,103 @@
-<!-- <mat-toolbar class="navbar">
-  <div>Flight Booking</div>
-  <div>
-    <span>
-      <button mat-raised-button color="accent">Login</button>
-    </span>
-    <span>
-      <button mat-raised-button color="accent">SignUp</button>
-    </span>
-  </div>
-</mat-toolbar> -->
-
-  
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg ">
   <a class="navbar-brand" href="#">Flight Booking</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item">
-        <a class="nav-link" routerLink="/events" routerLinkActive="active">Events</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/special" routerLinkActive="active">Members</a>
-      </li> -->
+     <!-- something -->
     </ul>
     <ul class="navbar-nav">
-        <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-        <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
+        <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
+        <a class="nav-link" style="cursor:pointer" routerLink="/register" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
         <!-- <a class="nav-link" style="cursor:pointer">Logout</a>         -->
     </ul>
   </div>
-</nav>    
+</nav>
+
+
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content">
+        <div class="row">
+          <div class="col s5 ipForm">
+
+            <form #searchForm="ngForm" class="form" (ngSubmit)="onSubmit(searchForm)">
+              <!-- (ngSubmit)="onSubmit(searchForm)" -->
+              <!-- <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="adminService.selectedFlight._id"> -->
+
+              <div class="form-group">
+              <label for="source">From</label>
+              <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" class="form-control rounded-0" required>
+              <small class="text-danger" [class.d-none]="source.valid || source.untouched">source is required</small>
+            </div>
+
+            <div class="form-group">
+              <label for="destination">To</label>
+              <input #destination="ngModel" [class.is-invalid]="destination.invalid && destination.touched" [(ngModel)]="flightSearchData.destination" type="text" name="destination" class="form-control rounded-0" required>
+              <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Date</label>
+                <input #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" class="form-control datepicker" type="date" name="date" id="date">
+                <small class="text-danger" [class.d-none]="date.valid || date.untouched">Date Of Birth is required</small>
+            </div>
+
+              <!-- <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div> -->
+
+              <button [disabled]="!searchForm.form.valid" type="submit" class="btn btn-success">SEARCH</button>
+            </form>
+          </div>
+          <div class="vl"></div>
+          <div class="col s7">
+              <table class="responsive-table highlight">
+                  <thead>
+                    <tr>
+                      <th class="tbl-head">Air-Line</th>
+                      <th class="tbl-head">Flight No.</th>
+                      <th class="tbl-head">To</th>
+                      <th class="tbl-head">From</th>
+                      <th class="tbl-head">Fare</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tr class="dispForm" *ngFor="let f of searchService.flights">
+                    <td>{{f.airLine}}</td>
+                    <td>{{f.flightName}}</td>
+                    <td>{{f.source}}</td>
+                    <td>{{f.destination}}</td>
+                    <td>{{f.fare | currency:'INR':'symbol'}}</td>
+                    <td>
+                      <!-- <button type="button" class="btn btn-primary">Book now</button> -->
+                      <button type="button" (click)="bookNow(f)" class="btn btn-info">Book Now</button>
+                      </td>
+                  </tr>
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
   <router-outlet></router-outlet>            
 </div>
-
-<!--Navbar -->
-<!-- <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
-    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">
-          <i class="fab fa-facebook-f"></i> Facebook
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fab fa-instagram"></i> Instagram</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i> Profile </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="#">My account</a>
-          <a class="dropdown-item" href="#">Log out</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-  <router-outlet></router-outlet> 
-</nav> -->
- 

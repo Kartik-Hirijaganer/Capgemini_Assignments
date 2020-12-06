@@ -5,16 +5,27 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { UserHomeComponent } from './user-home/user-home.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { BookingComponent } from './booking/booking.component';
+import { DialogLoginComponent } from './dialog-login/dialog-login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    UserHomeComponent,
+    AdminHomeComponent,
+    BookingComponent,
+    DialogLoginComponent
   ],
+  entryComponents : [DialogLoginComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -23,7 +34,12 @@ import { AuthService } from './auth.service';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
