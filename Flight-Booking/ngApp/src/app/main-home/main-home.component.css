@@ -1,36 +1,91 @@
-.navbar {
-  justify-content: space-between;
-  background-color: #32CD32;
-  height: 100px;
-}
-
-span {
-  padding-right: 3rem;
-}
-
-.navbar-brand{
-  
-  color: #fcf0f0;
-  font-size: 40px;
-  margin-left: 30px;
-}
-
-.nav-link{
-  color:#f5f2f2;
-  font-size: 18px;
-  margin-right: 20px;
-  padding-top: 40px;
-  height: 100px;
-  width: 110px;
-  text-align: center;
-}
-
-.nav-link:hover{
-  background-color: #f5f2f2;
-  color: #0c0c3d;
-}
-
 .vl {
   border-left: 6px solid green;
   height: 500px;
+}
+
+.search-box{
+  max-width: 500px;
+  max-height: 500px;
+  padding-top: 80px;
+  /* border: 5px solid black; */
+
+}
+
+.btn-success{
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+label {
+  font-size: 15px;
+  color: #0c0c3d;
+}
+
+.upper-section{
+  display: flex;
+  justify-content: center;
+  max-height: 300px;
+  width: 100%;
+  margin-top: 30px;
+}
+/* middle section start */
+.search-box{
+  /* border: 5px solid black; */
+  margin-left: 200px;
+  min-width: 1100px;
+  padding-bottom: 50px;
+  padding-left:50px;
+}
+
+.table{
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.title{
+  text-align: center;
+}
+
+.search{
+  margin-top:10px;
+  margin-left: 410px;
+}
+/* footer section start */
+.up-footer-head{
+  margin-top: 30px;
+  font-size: 22px;
+}
+
+.up-footer{
+  font-size: 14px;
+}
+
+.fa {
+  padding: 10px;
+  font-size: 20px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
 }

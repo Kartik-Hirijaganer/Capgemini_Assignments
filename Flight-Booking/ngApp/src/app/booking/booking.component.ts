@@ -35,7 +35,7 @@ export class BookingComponent implements OnInit {
   // }
 
   onBook(){
-    console.log('inside on book');
+    //console.log('inside on book');
     var user = this.userDetails;
     var flight = this.bookService.flight[0];
    
@@ -43,7 +43,7 @@ export class BookingComponent implements OnInit {
       flight,
       user
     }
-    console.log(bookingObj);
+    //console.log(bookingObj);
 
     this.bookService.postBookingDetails(bookingObj)
       .subscribe(

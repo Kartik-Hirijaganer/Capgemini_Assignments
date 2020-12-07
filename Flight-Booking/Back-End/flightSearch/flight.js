@@ -12,9 +12,8 @@ require("./flightDataModel");  //acquiring our schema file
 const flight = mongoose.model("flight"); //assigning schema model to flight constant
 
 //connecting mongoDB atlas dbName: flight_project, password:1234
-mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/flight_project?retryWrites=true&w=majority', ()=>{
-  console.log('Database connected');
-});
+mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/flight_project',{ useNewUrlParser: true, useUnifiedTopology: true });
+console.log('Database connected');
 
                             /* GET Methods */
 //no current use

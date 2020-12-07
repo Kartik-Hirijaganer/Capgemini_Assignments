@@ -32,6 +32,7 @@ export class MainHomeComponent implements OnInit {
   onSubmit(form: NgForm){
     this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
       this.searchService.flights = res as FlightData[];
+      console.log(res);
     });
   }
 
