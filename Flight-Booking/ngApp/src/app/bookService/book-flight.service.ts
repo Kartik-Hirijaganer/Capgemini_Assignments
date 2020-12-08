@@ -10,6 +10,7 @@ import { FlightData } from '../shared/flight-data.model';
 })
 export class BookFlightService {
   userId = '';
+  bookingId:any;
 
   flight: FlightData[] = [];
   userDetails= {
@@ -27,6 +28,7 @@ export class BookFlightService {
   }
 
   postBookingDetails(bookingObj: any) {
-    return this.http.post(this.baseURL + `/${bookingObj.flight.flightName}/${this.userId}`, bookingObj);
+    var ticketId = this.http.post(this.baseURL + `/${bookingObj.flight.flightName}/${this.userId}`, bookingObj);
+    return ticketId;
   }
 }

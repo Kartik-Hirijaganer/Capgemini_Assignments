@@ -1,4 +1,3 @@
-
 <!-- Start of table -->
 <div class="details">
   <table class="responsive-table highlight">
@@ -12,21 +11,23 @@
         <th></th>
       </tr>
     </thead>
-    <tr class="dispForm" *ngFor="let f of bookService.flight">
+    <tr class="dispForm" *ngFor="let f of bookFlightService.flight">
       <td>{{f.airLine}}</td>
+      <td>
+        <a class="action-btn">
+            <i class="material-icons">flight_takeoff</i>
+          </a>
+      </td>
       <td>{{f.flightName}}</td>
       <td>{{f.source}}</td>
       <td>{{f.destination}}</td>
       <td>{{f.fare | currency:'INR':'symbol'}}</td>
-      <!-- <td>
-        <button type="button" (click)="bookNow(f)" class="btn btn-info">Book Now</button>
-        </td> -->
     </tr>
   </table>
 </div>
 
 <br><br>
-<div class="user-form">
+<!-- <div class="user-form">
   <h2>BOOKING DETAILS</h2>
   <form #bookForm="ngForm" class="form">
 
@@ -48,6 +49,49 @@
         <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date Of Birth is required</small>
     </div>
     <br><br>
-    <button type="button" (click)="onBook()" class="btn btn-success">Book</button>
+    <button type="button" (click)="payWithRazor()" class="btn btn-success">Book</button>
   </form>
-</div>
+</div> -->
+
+                              <!-- stepper -->
+<mat-horizontal-stepper  class="stepper">
+  <mat-step class="step" label="Passenger Details">
+    <form #bookForm="ngForm" class="form">
+
+      <div class="form-group">
+      <input #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched" [(ngModel)]="userDetails.firstName" type="text" name="firstName" class="form-control rounded-0" placeholder="First Name:" required>
+      <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">First Name is required</small>
+      </div>
+  
+      <div class="form-group">
+        <input #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" [(ngModel)]="userDetails.lastName" type="text" name="lastName" class="form-control rounded-0" placeholder="Last Name:" required>
+        <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">Last Name is required</small>
+      </div>
+  
+      <div class="form-group">
+          <input #email="ngModel" [class.is-invalid]="email.invalid && email.touched"   class="form-control" [(ngModel)]="userDetails.email" type="email" name="email" id="email" placeholder="Email:" required>
+          <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+      </div>
+
+    </form>
+    <button mat-raised-button color="primary" matStepperNext>next</button>
+  </mat-step>
+  <mat-step label="Ticket Summary">
+    <div>
+      <h3>Name : {{userDetails.firstName}} {{userDetails.lastName}}</h3>
+    </div>
+    <div>
+      <h3>Email : {{userDetails.email}}</h3>
+    </div>
+    <div>
+      <h3>Date : {{date}}</h3>
+    </div>
+    <button mat-raised-button color="primary" matStepperNext>next</button>
+
+  </mat-step>
+  <mat-step label="Book Ticket">
+    <button (click)="payWithRazor()" class="btn waves-effect waves-light" matStepperNext type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
+  </mat-step>
+</mat-horizontal-stepper>

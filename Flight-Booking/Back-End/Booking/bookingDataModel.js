@@ -55,7 +55,7 @@ mongoose.model('booking',{
       type:String,
       required: true
     },
-    dateOfBirth: {
+    email: {
       type: String,
       required: true
     }

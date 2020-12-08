@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, NgZone} from '@angular/core';
 import { AuthService } from '../auth.service';
-//import { NgForm } from '@angular/forms';
 
-//import { FlightData } from '../shared/flight-data.model';
+import { WindowRefService } from '../window-ref.service';
 import { BookFlightService } from '../bookService/book-flight.service';
+import { Router } from '@angular/router';
 
-declare var M: any;
+
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
@@ -14,51 +13,79 @@ declare var M: any;
 })
 export class BookingComponent implements OnInit {
   
+  public rzp: any;
+  public today = new Date();
+  dd = String(this.today.getDate()).padStart(2, '0');
+  mm = String(this.today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  yyyy = this.today.getFullYear();
+
+  public date = this.mm + '/' + this.dd + '/' + this.yyyy;
 
   userDetails= {
     firstName: '',
     lastName: '',
-    dateOfBirth: ''
+    email: ''
   }
-  constructor(public bookService: BookFlightService, public _authService: AuthService) { }
-
-  //userDetails =  this.bookService.userDetails;
+  constructor(
+    public bookFlightService: BookFlightService,
+     public _authService: AuthService,
+     private winRef: WindowRefService,
+     private zone: NgZone,
+     private _router: Router
+     ) { }
 
   ngOnInit(): void {
   }
 
-  // }
-  // refreshFlightList() {
-  //   this.bookService.getFlightList().subscribe((res) => {
-  //     this.bookService.flights = res as FlightData[];
-  //   });
-  // }
-
+  //booking method
   onBook(){
     //console.log('inside on book');
     var user = this.userDetails;
-    var flight = this.bookService.flight[0];
+    var flight = this.bookFlightService.flight[0];
    
     let bookingObj= {
       flight,
       user
     }
-    //console.log(bookingObj);
 
-    this.bookService.postBookingDetails(bookingObj)
+    this.bookFlightService.postBookingDetails(bookingObj)
       .subscribe(
         res => {
           console.log(res);
-          //M.toast({ html: 'Saved successfully', classes: 'rounded' });
+          this.bookFlightService.bookingId = res;
+          this._router.navigate(['/payment/success']);
         },
         err => {
           console.log(err);
         }
-      )
-
-    //var token = this._auth.getToken();
-    // let token = localStorage.getItem('token');
-    // console.log(token);
-     
+      ) 
   }
+
+  //payment method
+  payWithRazor(){ 
+    let options:any = {
+        "key": "rzp_test_UKOSZWVmPKBrfK",
+        "amount": this.bookFlightService.flight[0].fare*100,
+        "name": "Flight Booking",
+        "description": "Flight booking payment",
+        "modal": {
+          escape: false,
+        }, 
+        "theme": {
+          "color": "#3399cc"
+        }
+      };
+      options.handler = ((response:any) => {
+          console.log(response);
+          this.zone.run(() => {
+            // add API call here
+            this.onBook();
+          });
+      });
+      options.modal.ondismiss = ((response:any) => {
+          console.log(response);
+      });
+      let rzp = new this.winRef.nativeWindow.Razorpay(options);
+      rzp.open();
+  } 
 }

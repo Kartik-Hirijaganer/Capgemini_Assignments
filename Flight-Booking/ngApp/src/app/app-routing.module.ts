@@ -5,6 +5,7 @@ import { AuthGuard } from './auth.guard';
 import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { MainHomeComponent } from './main-home/main-home.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { RegisterComponent } from './register/register.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
@@ -31,6 +32,9 @@ const routes: Routes = [
   },
   {
     path: 'booking', component: BookingComponent
+  },
+  {
+    path: 'payment/success', component: PaymentSuccessComponent
   }
 ];
 

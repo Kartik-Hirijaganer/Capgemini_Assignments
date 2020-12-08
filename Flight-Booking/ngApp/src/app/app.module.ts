@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { BookingComponent } from './booking/booking.component';
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 
 
@@ -23,7 +24,8 @@ import { DialogLoginComponent } from './dialog-login/dialog-login.component';
     UserHomeComponent,
     AdminHomeComponent,
     BookingComponent,
-    DialogLoginComponent
+    DialogLoginComponent,
+    PaymentSuccessComponent
   ],
   entryComponents : [DialogLoginComponent],
   imports: [

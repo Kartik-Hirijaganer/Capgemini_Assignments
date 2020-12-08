@@ -71,14 +71,18 @@
 </div> -->
  <!-- end of old search box -->
  <!-- upper section -->
-<div class="upper-section col s12 m2">
-  <img class="z-depth-4" src="/assets/images/flight.jpg">
-</div>
+ <div *ngIf="_authService.loggedIn()">
+   <h1>Welcome !!</h1>
+ </div>
 
+<div class="upper-section">
+  <img class="z-depth-4" src="/assets/images/flight1.jpg">
+</div>
 <br>
 <br>
 <h1 class="title">SEARCH FLIGHTS</h1>
 <br><br>
+
 <div class="search-box z-depth-5">
   <form #searchForm="ngForm" class="form" (ngSubmit)="onSubmit(searchForm)">
     <div class="form-row">
@@ -86,6 +90,11 @@
         <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" class="form-control" placeholder="FROM" required>
         <small class="text-danger" [class.d-none]="source.valid || source.untouched">source is required</small>
       </div>
+
+      <div class="form-row">
+        <a class="material-icons action-btn" (click)="swap(flightSearchData.source,flightSearchData.destination)">compare_arrows</a>
+      </div>
+
       <div class="col-4 form-group">
         <input #destination="ngModel" [class.is-invalid]="destination.invalid &&destination.touched" [(ngModel)]="flightSearchData.destination" type="text" name="destination" class="form-control" placeholder="TO" required>
         <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
@@ -98,6 +107,7 @@
     <button [disabled]="!searchForm.form.valid" type="submit" class="btn btn-success search">SEARCH</button>
   </form>
 </div>
+
 <br>
 
 <div class="col s7 table">
@@ -105,6 +115,7 @@
       <thead>
         <tr>
           <th class="tbl-head">Air-Line</th>
+          <th></th>
           <th class="tbl-head">Flight No.</th>
           <th class="tbl-head">To</th>
           <th class="tbl-head">From</th>
@@ -114,18 +125,23 @@
       </thead>
       <tr class="dispForm" *ngFor="let f of searchService.flights">
         <td>{{f.airLine}}</td>
+        <td>
+          <a class="action-btn">
+            <i class="material-icons">flight_takeoff</i>
+          </a>
+        </td>
         <td>{{f.flightName}}</td>
         <td>{{f.source}}</td>
         <td>{{f.destination}}</td>
         <td>{{f.fare | currency:'INR':'symbol'}}</td>
-        <td> -->
+        <td>
            <button type="button" *ngIf="_authService.loggedIn()" (click)="bookNow(f)" class="btn btn-info">Book Now</button>
           </td>
       </tr>
     </table>
 </div>
 
-<footer class="page-footer">
+<!-- <footer class="page-footer">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
@@ -150,7 +166,7 @@
     <a href="https://www.facebook.com/" target="_blank" class="grey-text text-lighten-4 right fa fa-facebook"></a>
     </div>
   </div>
-</footer>
+</footer> -->
 
 
 
@@ -159,6 +175,6 @@
 
 
 
-<div class="container">
+<!-- <div class="container">
   <router-outlet></router-outlet>            
-</div>
+</div> -->

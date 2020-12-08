@@ -24,7 +24,7 @@ export class MainHomeComponent implements OnInit {
   constructor(public _authService: AuthService, public searchService: SearchService, private _router: Router, public dialog: MatDialog, private bookService: BookFlightService) { }
 
   ngOnInit(): void {
-    this.refreshFlightList();
+    
   }
 
   
@@ -36,21 +36,38 @@ export class MainHomeComponent implements OnInit {
     });
   }
 
-  refreshFlightList() {
-    this.searchService.getFlightList().subscribe((res) => {
-      this.searchService.flights = res as FlightData[];
-    });
+  // refreshFlightList() {
+  //   this.searchService.getFlightList().subscribe((res) => {
+  //     this.searchService.flights = res as FlightData[];
+  //   });
+  // }
+
+  // checkData(){
+  //   if(this.flightSearchData.destination === this.flightSearchData.source){
+  //     console.log('return false');
+  //     return false;
+  //   }
+  //   else{
+  //     console.log('return true');
+  //     return true;
+  //   }
+  // }
+  swap(source: string, des: string){
+    this.flightSearchData.destination = source;
+    this.flightSearchData.source = des;
   }
 
   bookNow(f: FlightData){
-    //var status = this._authService.loggedIn();
-    if(this._authService.loggedIn()){
-      this.bookService.flight.push(f);
-      this._router.navigate(['/booking']);
-    }
-    else{
-      //dialog box;
-      this.dialog.open(DialogLoginComponent);
-    }
+    this.bookService.flight.push(f);
+    this._router.navigate(['/booking']);
+
+    // if(this._authService.loggedIn()){
+    //   this.bookService.flight.push(f);
+    //   this._router.navigate(['/booking']);
+    // }
+    // else{
+    //   //dialog box;
+    //   this.dialog.open(DialogLoginComponent);
+    // }
   }
 }

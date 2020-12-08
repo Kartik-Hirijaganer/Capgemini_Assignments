@@ -51,10 +51,24 @@ h2{
   border-color: #28a745;
 }
 
-/* .btn-success{
-  margin-left: 20px;
-  min-width: 100px;
-  min-height: 50px;
-  background-color: #32CD32;
-  color: #fff;
-} */
+.btn{
+background-color: #7b1fa2;
+color: white;
+}
+
+.stepper{
+  background-color:  #accbeb;
+  margin-bottom: 100px;
+}
+
+h3{
+  color: #7a247a;
+}
+.form{
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.span-title{
+  color: whitesmoke;
+}

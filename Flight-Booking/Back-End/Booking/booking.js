@@ -80,7 +80,7 @@ app.get('/booking/allbookings/:userId', (req, res) => {
 var bookingId = 110;
 app.post("/booking/add/:flightName/:userId", (req, res)=>{
   let flightName = req.params.flightName;
-  console.log('inside booking post');
+  // console.log('inside booking post');
   var newBooking = {
     userId: mongoose.Types.ObjectId(req.params.userId),
     flight:{
@@ -93,7 +93,7 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
     userDetails:{
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
-      dateOfBirth: req.body.user.dateOfBirth
+      email: req.body.user.email
     },
     bookingId: bookingId
   }
@@ -123,10 +123,10 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
     var booking1 = new booking(newBooking);
     booking1.save().then(() =>{
     //res.send(bookingId);
-    var id = {
-      Id: bookingId
-    }
-    res.send(id);
+    // var id = {
+    //   Id: bookingId
+    // }
+    res.status(200).json({bookingId: bookingId});
     bookingId++;
     console.log('booking success');
     });

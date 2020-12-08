@@ -10,10 +10,38 @@
         <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
         <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
         <a class="nav-link" style="cursor:pointer" routerLink="/register" *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()" routerLinkActive="active">Logout</a>
-        <!-- <a class="nav-link" style="cursor:pointer">Logout</a>         -->
     </ul>
   </div>
 </nav>
 
 
 <router-outlet></router-outlet>
+
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text up-footer-head">About us</h5>
+        <p class="grey-text text-lighten-4 up-footer">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quae velit vero repudiandae ipsa pariatur earum voluptatum eius assumenda aperiam! Dolorum iure voluptates rem unde possimus pariatur itaque rerum corporis?</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text up-footer-head">Contact us</h5>
+        <ul class="up-footer">
+          <li>Tel.no: +251 022554</li>
+          <li>Mobile.No: +91 9850235002</li>
+          <li>Email: flightbooking@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Copyright Flight Booking System
+    <a href="https://twitter.com/" target="_blank" class="grey-text text-lighten-4 right fa fa-twitter"></a>
+    <a href="https://www.instagram.com/" target="_blank" class="grey-text text-lighten-4 right fa fa-instagram"></a>
+    <a href="https://www.facebook.com/" target="_blank" class="grey-text text-lighten-4 right fa fa-facebook"></a>
+    </div>
+  </div>
+</footer>
+
