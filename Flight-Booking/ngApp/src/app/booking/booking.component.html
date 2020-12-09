@@ -1,5 +1,5 @@
 <!-- Start of table -->
-<div class="details">
+<!-- <div class="details">
   <table class="responsive-table highlight">
     <thead>
       <tr>
@@ -24,9 +24,9 @@
       <td>{{f.fare | currency:'INR':'symbol'}}</td>
     </tr>
   </table>
-</div>
+</div> -->
 
-<br><br>
+<!-- <br><br> -->
 <!-- <div class="user-form">
   <h2>BOOKING DETAILS</h2>
   <form #bookForm="ngForm" class="form">
@@ -54,7 +54,68 @@
 </div> -->
 
                               <!-- stepper -->
-<mat-horizontal-stepper  class="stepper">
+<div class="details">
+  <table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th class="tbl-head">Air-Line</th>
+        <th></th>
+        <th class="tbl-head">Flight No.</th>
+        <th class="tbl-head">To</th>
+        <th class="tbl-head">From</th>
+        <th class="tbl-head">Fare</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr class="dispForm" *ngFor="let f of bookFlightService.flight">
+      <td>{{f.airLine}}</td>
+      <td>
+        <a class="action-btn">
+            <i class="material-icons">flight_takeoff</i>
+          </a>
+      </td>
+      <td>{{f.flightName}}</td>
+      <td>{{f.source}}</td>
+      <td>{{f.destination}}</td>
+      <td>{{f.fare | currency:'INR':'symbol'}}</td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <button type="button" (click)="test()">SAMPLE</button>
+</div>
+
+
+<mat-horizontal-stepper  class="card">
+  <!-- <div class="details">
+    <table class="responsive-table highlight">
+      <thead>
+        <tr>
+          <th class="tbl-head">Air-Line</th>
+          <th class="tbl-head">Flight No.</th>
+          <th class="tbl-head">To</th>
+          <th class="tbl-head">From</th>
+          <th class="tbl-head">Fare</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tr class="dispForm" *ngFor="let f of bookFlightService.flight">
+        <td>{{f.airLine}}</td>
+        <td>
+          <a class="action-btn">
+              <i class="material-icons">flight_takeoff</i>
+            </a>
+        </td>
+        <td>{{f.flightName}}</td>
+        <td>{{f.source}}</td>
+        <td>{{f.destination}}</td>
+        <td>{{f.fare | currency:'INR':'symbol'}}</td>
+      </tr>
+    </table>
+  </div> -->
+
+ 
   <mat-step class="step" label="Passenger Details">
     <form #bookForm="ngForm" class="form">
 
@@ -90,8 +151,9 @@
 
   </mat-step>
   <mat-step label="Book Ticket">
-    <button (click)="payWithRazor()" class="btn waves-effect waves-light" matStepperNext type="submit" name="action">Submit
+    <button (click)="payWithRazor()" class="btn waves-effect waves-light" matStepperNext type="submit" name="action">PAY
       <i class="material-icons right">send</i>
     </button>
   </mat-step>
 </mat-horizontal-stepper>
+

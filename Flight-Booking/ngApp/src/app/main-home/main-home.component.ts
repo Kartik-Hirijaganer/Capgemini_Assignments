@@ -3,12 +3,10 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { SearchService } from '../search/search.service';
 import { MatDialog } from '@angular/material/dialog';
-//import {MatDialogModule} from '@angular/material/dialog';
 
 import { SearchData } from '../search/search-data.model';
 import { FlightData } from '../shared/flight-data.model';
 import { Router } from '@angular/router';
-import { DialogLoginComponent } from '../dialog-login/dialog-login.component';
 import { BookFlightService } from '../bookService/book-flight.service';
 
 
@@ -60,14 +58,5 @@ export class MainHomeComponent implements OnInit {
   bookNow(f: FlightData){
     this.bookService.flight.push(f);
     this._router.navigate(['/booking']);
-
-    // if(this._authService.loggedIn()){
-    //   this.bookService.flight.push(f);
-    //   this._router.navigate(['/booking']);
-    // }
-    // else{
-    //   //dialog box;
-    //   this.dialog.open(DialogLoginComponent);
-    // }
   }
 }

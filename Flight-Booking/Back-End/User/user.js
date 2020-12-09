@@ -29,7 +29,13 @@ app.post('/user/login', async (req, res) => {
     const myuser = await user.login(emailId, password);
     const token = auth.createToken(myuser._id);
     //res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
-    res.status(200).json({token: token,userId: myuser._id, userType: myuser.userType});
+    var tokenObj = {
+      token: token,
+      userId: myuser._id,
+      userType: myuser.userType
+    }
+    //res.status(200).json({token: token,userId: myuser._id, userType: myuser.userType});
+    res.status(200).send(tokenObj);
     console.log('success');
   }
   catch (err) {

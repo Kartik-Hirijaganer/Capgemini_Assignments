@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     this._auth.loginUser(this.loginUserData)
       .subscribe(
         res => {
-          //console.log(res);
+          console.log(res);
           var tokenObj = {
             token: res.token,
             userID: res.userId,
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
           
           //storing userId in bookingService
           this.bookFlightService.userId = res.userId;
-
+          console.log(res.userType);
           //store
           localStorage.setItem('token', JSON.stringify(tokenObj));
           if(res.userType=="admin"){

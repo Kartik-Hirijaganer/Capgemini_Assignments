@@ -56,8 +56,10 @@ background-color: #7b1fa2;
 color: white;
 }
 
-.stepper{
-  background-color:  #accbeb;
+.card{
+  background-image: linear-gradient(rgb(32, 99, 175),rgb(24,76,137));
+  min-height: 300px;
+  margin-top: 0px;
   margin-bottom: 100px;
 }
 

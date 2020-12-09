@@ -37,6 +37,10 @@ span {
 }
 
 /* footer */
+
+.page-footer{
+  margin-bottom: 0px;
+}
 .up-footer-head{
   margin-top: 30px;
   font-size: 22px;

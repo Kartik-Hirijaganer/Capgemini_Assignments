@@ -7,13 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { UserHomeComponent } from './user-home/user-home.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
+//import { UserHomeComponent } from './user-home/user-home.component';
+//import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { BookingComponent } from './booking/booking.component';
+//import { BookingComponent } from './booking/booking.component';
 import { DialogLoginComponent } from './dialog-login/dialog-login.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+//import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+//import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 
 
 
@@ -21,11 +22,10 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
   declarations: [
     AppComponent,
     routingComponents,
-    UserHomeComponent,
-    AdminHomeComponent,
-    BookingComponent,
+    // AdminHomeComponent,
+    // BookingComponent,
     DialogLoginComponent,
-    PaymentSuccessComponent
+    // ViewBookingsComponent
   ],
   entryComponents : [DialogLoginComponent],
   imports: [

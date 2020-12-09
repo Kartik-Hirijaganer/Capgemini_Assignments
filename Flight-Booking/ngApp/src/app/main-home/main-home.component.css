@@ -30,6 +30,12 @@ h1 {
 }
 
 /* middle section start */
+.card{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-image: linear-gradient(rgb(19,61,110),rgb(33, 109, 197));
+}
+
 .search-box{
   max-width: 1000px;
   margin-left: 230px;

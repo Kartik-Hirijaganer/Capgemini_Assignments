@@ -4,6 +4,8 @@ import { AuthService } from '../auth.service';
 import { WindowRefService } from '../window-ref.service';
 import { BookFlightService } from '../bookService/book-flight.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogLoginComponent } from '../dialog-login/dialog-login.component';
 
 
 @Component({
@@ -31,7 +33,8 @@ export class BookingComponent implements OnInit {
      public _authService: AuthService,
      private winRef: WindowRefService,
      private zone: NgZone,
-     private _router: Router
+     private _router: Router,
+     public dialog: MatDialog
      ) { }
 
   ngOnInit(): void {
@@ -51,9 +54,10 @@ export class BookingComponent implements OnInit {
     this.bookFlightService.postBookingDetails(bookingObj)
       .subscribe(
         res => {
-          console.log(res);
+          //console.log(res);
           this.bookFlightService.bookingId = res;
-          this._router.navigate(['/payment/success']);
+          //dialog box;
+          this.dialog.open(DialogLoginComponent);
         },
         err => {
           console.log(err);
@@ -72,7 +76,7 @@ export class BookingComponent implements OnInit {
           escape: false,
         }, 
         "theme": {
-          "color": "#3399cc"
+          "color": "#32CD32"
         }
       };
       options.handler = ((response:any) => {
@@ -88,4 +92,10 @@ export class BookingComponent implements OnInit {
       let rzp = new this.winRef.nativeWindow.Razorpay(options);
       rzp.open();
   } 
+
+  test(){
+    this.dialog.open(DialogLoginComponent);
+  };
 }
+
+

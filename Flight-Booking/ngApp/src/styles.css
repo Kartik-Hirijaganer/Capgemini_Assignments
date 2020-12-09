@@ -5,7 +5,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /*  */
 
-/* body {
-  background-color: #fff;
-  color: #02082c;
-} */
+body {
+  background-image: linear-gradient(rgb(19,61,110),rgb(33, 109, 197));
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}

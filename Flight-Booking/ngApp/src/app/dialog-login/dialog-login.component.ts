@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BookFlightService } from '../bookService/book-flight.service';
 
 @Component({
   selector: 'app-dialog-login',
@@ -8,19 +9,13 @@ import { Router } from '@angular/router';
 })
 export class DialogLoginComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router, public bookFlightService: BookFlightService) { }
 
   ngOnInit(): void {
   }
 
-  login(){
-    //login
-    this._router.navigate(['/login']);
+  viewBookings(){
+    //viewBookings()
+    this._router.navigate(['/viewallbookings', this.bookFlightService.userId]);
   }
-
-  signUp(){
-    //signUIp
-    this._router.navigate(['/register']);
-  }
-
 }

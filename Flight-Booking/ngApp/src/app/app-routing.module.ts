@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AuthGuard } from './auth.guard';
+
 import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { MainHomeComponent } from './main-home/main-home.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { RegisterComponent } from './register/register.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 
 const routes: Routes = [
   {
@@ -23,10 +24,6 @@ const routes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'userHome', component: UserHomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'adminHome', component: AdminHomeComponent,
     canActivate: [AuthGuard]
   },
@@ -34,7 +31,7 @@ const routes: Routes = [
     path: 'booking', component: BookingComponent
   },
   {
-    path: 'payment/success', component: PaymentSuccessComponent
+    path: 'viewallbookings/:userId', component: ViewBookingsComponent
   }
 ];
 
@@ -46,5 +43,8 @@ export class AppRoutingModule { }
 export const routingComponents = [
   MainHomeComponent,
   LoginComponent,
-  RegisterComponent
+  RegisterComponent,
+  AdminHomeComponent,
+  BookingComponent,
+  ViewBookingsComponent
 ]

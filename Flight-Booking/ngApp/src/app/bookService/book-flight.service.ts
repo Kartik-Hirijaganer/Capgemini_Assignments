@@ -28,6 +28,7 @@ export class BookFlightService {
   }
 
   postBookingDetails(bookingObj: any) {
+    //console.log(this.userId);
     var ticketId = this.http.post(this.baseURL + `/${bookingObj.flight.flightName}/${this.userId}`, bookingObj);
     return ticketId;
   }
