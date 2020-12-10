@@ -53,7 +53,7 @@
   </form>
 </div> -->
 
-                              <!-- stepper -->
+                              <!-- table -->
 <div class="details">
   <table class="responsive-table highlight">
     <thead>
@@ -82,40 +82,12 @@
   </table>
 </div>
 
-<div>
+<!-- <div>
   <button type="button" (click)="test()">SAMPLE</button>
-</div>
+</div> -->
 
-
+<!-- stepper -->
 <mat-horizontal-stepper  class="card">
-  <!-- <div class="details">
-    <table class="responsive-table highlight">
-      <thead>
-        <tr>
-          <th class="tbl-head">Air-Line</th>
-          <th class="tbl-head">Flight No.</th>
-          <th class="tbl-head">To</th>
-          <th class="tbl-head">From</th>
-          <th class="tbl-head">Fare</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tr class="dispForm" *ngFor="let f of bookFlightService.flight">
-        <td>{{f.airLine}}</td>
-        <td>
-          <a class="action-btn">
-              <i class="material-icons">flight_takeoff</i>
-            </a>
-        </td>
-        <td>{{f.flightName}}</td>
-        <td>{{f.source}}</td>
-        <td>{{f.destination}}</td>
-        <td>{{f.fare | currency:'INR':'symbol'}}</td>
-      </tr>
-    </table>
-  </div> -->
-
- 
   <mat-step class="step" label="Passenger Details">
     <form #bookForm="ngForm" class="form">
 

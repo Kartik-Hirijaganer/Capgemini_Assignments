@@ -6,7 +6,7 @@
   </div>
  
  <div class="upper-section">
-   <img class="z-depth-4" src="/assets/images/flight1.jpg">
+   <img class="" src="/assets/images/flight1.jpg">
  </div>
  <br>
  <br>
@@ -17,7 +17,8 @@
    <form #searchForm="ngForm" class="form" (ngSubmit)="onSubmit(searchForm)">
      <div class="form-row">
        <div class="col-4 form-group">
-         <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" class="form-control" placeholder="FROM" required>
+         <!-- <label for="source">FROM</label> -->
+         <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" placeholder="FROM" class="form-control" required>
          <small class="text-danger" [class.d-none]="source.valid || source.untouched">source is required</small>
        </div>
  

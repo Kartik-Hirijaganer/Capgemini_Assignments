@@ -1,3 +1,4 @@
+/* navbar section */
 .navbar {
   justify-content: space-between;
   background-color: #32CD32;
@@ -36,7 +37,7 @@ span {
   height: 120px;
 }
 
-/* footer */
+/* footer section */
 
 .page-footer{
   margin-bottom: 0px;
@@ -50,6 +51,7 @@ span {
   font-size: 14px;
 }
 
+/* social media icons */
 .fa {
   padding: 10px;
   font-size: 20px;

@@ -20,7 +20,7 @@ export class BookFlightService {
   }
  
   readonly baseURL = 'http://localhost:3300/booking/add';
-
+  readonly bookingsUrl = 'http://localhost:3300/booking/allbookings/';
   constructor(private http: HttpClient) { }
 
   bookedFlight(){
@@ -31,5 +31,9 @@ export class BookFlightService {
     //console.log(this.userId);
     var ticketId = this.http.post(this.baseURL + `/${bookingObj.flight.flightName}/${this.userId}`, bookingObj);
     return ticketId;
+  }
+
+  getBookedFlights(userId: any){
+    return this.http.get(this.bookingsUrl+userId);
   }
 }

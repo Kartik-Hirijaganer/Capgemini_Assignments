@@ -52,6 +52,7 @@ app.get("/bookingById/:bookingId", (req, res)=>{
   It will search in booking db all bookings having that userId(objectId).
 */
 app.get('/booking/allbookings/:userId', (req, res) => {
+  //console.log('inside get'+req.params.userId);
   var objectId = mongoose.Types.ObjectId(req.params.userId);
   var myArr = [];
   booking.find({userId:objectId}).then((response)=>{
@@ -59,12 +60,13 @@ app.get('/booking/allbookings/:userId', (req, res) => {
     for(let i of response){
       let bookingObj = {
         flight: i.flight,
-        bookingId: i.bookingId
+        bookingId: i.bookingId,
+        userDetails: i.userDetails
       }
       myArr.push(bookingObj);
     }
-    console.log(myArr);
-    res.send(myArr);
+    //console.log(myArr);
+    res.status(200).send(myArr);
   }).catch((err) => {
     if(err){
       throw err;

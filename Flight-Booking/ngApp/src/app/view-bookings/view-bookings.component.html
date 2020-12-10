@@ -1,1 +1,89 @@
-<p>view-bookings works!</p>
+<!-- old table -->
+
+<!-- <table class="highlight responsive-table">
+  <thead>
+    <tr>
+      <th>passenger info</th>
+        <th>Air-Line</th>
+        <th></th>
+        <th>Flight No</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Fare</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr id="row" *ngFor="let f of this.bookedFlights">
+      <td>
+        <div class="name">
+          Name: {{f.userDetails.firstName}} {{f.userDetails.lastName}}
+        </div>
+        <div class="name">Booking Number: {{f.bookingId}}</div>
+        <div class="button">
+          <button class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>cancel booking</button>
+          <button class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>check-In</button>
+    </div>
+   
+      <td>
+        <div class="name">{{f.flight.airLine}}</div>
+        <div class="button"></div>
+      </td>
+      <td><i class="material-icons name">flight_takeoff</i>
+        <div class="button"></div>
+      </td>
+      <td>
+        <div class="name">{{f.flight.flightName}}</div>
+        <div class="button"></div>
+      </td>
+      <td>
+        <div class="name">{{f.flight.source}}</div>
+        <div class="button"></div>
+      </td>
+      <td>
+        <div class="name">{{f.flight.destination}}</div>
+        <div class="button"></div>
+      </td>
+      <td>
+        <div class="name">{{f.flight.fare | currency:'INR':'symbol'}}</div>
+        <div class="button"></div>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+
+<!-- new table -->
+
+<!-- user table -->
+<table class="highlight responsive-table">
+  <thead>
+    <tr id="head">
+        <th>NAME</th>
+        <th>BOOKING ID</th>
+        <th>AIR-LINE</th>
+        <th>FLIGHT</th>
+        <th>FROM</th>
+        <th>TO</th>
+        <th>FARE</th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let f of this.bookedFlights">
+    <tr id="data">
+      <td>
+        <div id="name">{{f.userDetails.firstName}} {{f.userDetails.lastName}}</div>
+        <button class="waves-effect waves-light btn">cancel</button>
+        <button class="waves-effect waves-light btn checkIn">check-in</button>
+      </td>
+      <td>{{f.bookingId}}</td>
+      <td>{{f.flight.airLine.toUpperCase()}}</td>
+      <td>{{f.flight.flightName}}</td>
+      <td>{{f.flight.source.toUpperCase()}}</td>
+      <td>{{f.flight.destination.toUpperCase()}}</td>
+      <td>{{f.flight.fare | currency:'INR':'symbol'}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- flight table -->
