@@ -21,6 +21,8 @@ export class BookFlightService {
  
   readonly baseURL = 'http://localhost:3300/booking/add';
   readonly bookingsUrl = 'http://localhost:3300/booking/allbookings/';
+  readonly cancelUrl = "http://localhost:3300/booking/cancel/";
+
   constructor(private http: HttpClient) { }
 
   bookedFlight(){
@@ -35,5 +37,10 @@ export class BookFlightService {
 
   getBookedFlights(userId: any){
     return this.http.get(this.bookingsUrl+userId);
+  }
+
+  deleteBooking(bookingId: number){
+    //console.log(this.cancelUrl+bookingId);
+    return this.http.delete(this.cancelUrl+ bookingId);
   }
 }

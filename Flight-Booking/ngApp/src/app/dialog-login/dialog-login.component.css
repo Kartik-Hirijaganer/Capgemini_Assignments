@@ -29,3 +29,8 @@
 .icon{
   color: #02082c;
 }
+/* ::ng-deep .mat-dialog {
+  /* styles here */
+  /* background-color: rgb(73, 34, 34);
+  color: black; */
+/*} */

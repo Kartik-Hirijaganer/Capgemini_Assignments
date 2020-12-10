@@ -135,9 +135,9 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
 });
 
 
-app.delete("booking/cancel/:bookingId", (req, res)=>{
+app.delete("/booking/cancel/:bookingId", (req, res)=>{
   booking.deleteOne({bookingId: req.params.bookingId}).then((response)=>{
-    res.send(`Booking cancelled`);
+    res.send(response);
     console.log("booking cancelled");
   })
 });

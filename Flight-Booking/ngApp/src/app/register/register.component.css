@@ -1,16 +1,13 @@
 .card-header{
-  background-color: #32CD32;
+  background-color:	#b0a0cc;
   color: #0c0c3d;
 }
 
 .card {
+  background-color:	#e6ddf7;
   max-height: 900px;
   max-width: 700px;
 }
-
-/* .gender-label{
-  margin-top:5px;
-} */
 
 .radio{
   margin-right: 5px;
@@ -22,7 +19,7 @@ label {
 }
 
 .title{
-  color: #fff;
+  color: #0c0c3d;
   text-align: center;
   font-size: 30px;
   min-height: 50px;

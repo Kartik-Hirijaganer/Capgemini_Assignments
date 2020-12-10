@@ -4,7 +4,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
      <!-- something -->
-     <a class="nav-link view-all-booking" *ngIf="_authService.loggedIn()" style="cursor:pointer" routerLinkActive="active">View all bookings</a>
+     <a class="nav-link view-all-booking" *ngIf="_authService.loggedIn()" style="cursor:pointer" [routerLink]="['/viewallbookings', this.bookFlightService.userId]" routerLinkActive="active">View all bookings</a>
     </ul>
     <ul class="navbar-nav">
         <a class="nav-link" *ngIf="!_authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>

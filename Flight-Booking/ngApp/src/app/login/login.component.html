@@ -3,7 +3,7 @@
     <div class="col-md-6 mx-auto">
       <span class="anchor" id="formLogin"></span>
 
-      <div class="card rounded-0">
+      <div class="card z-depth-4 rounded-0">
         <div class="card-header">
           <h3 class="mb-0 title">Login</h3>
         </div>
@@ -20,6 +20,9 @@
               <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
             </div>
             <button [disabled]="!loginForm.form.valid" (click)="loginUser()" type="button" class="btn btn-success float-center">Login</button>
+            <a class="reg-link" routerLink="/register" routerLinkActive="active">
+              New user? click me to register.
+            </a>
           </form>
         </div>
       </div>

@@ -64,9 +64,8 @@ a.action-btn:hover{
 } */
 
 div.card{
-  background-color: #fff;
+  background-color: #b0a0cc;
   color:#02082c;
-  box-shadow: 10px 10px 5px grey;
   width: 95%;
   /* margin: 10px 10px; */
   margin-top: 20px;
@@ -74,7 +73,7 @@ div.card{
 }
 
 .tbl-head{
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .ipForm{
@@ -87,4 +86,9 @@ div.card{
   font-size: 20px;
   /* max-height: 800px; */
   /* margin-bottom: 50px; */
+}
+
+.vl {
+  border-left: 6px solid #867a9b;
+  /* height: 500px; */
 }
