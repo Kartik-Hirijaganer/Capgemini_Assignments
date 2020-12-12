@@ -7,6 +7,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 const material = [
   MatButtonModule,
   MatToolbarModule,
@@ -14,7 +17,9 @@ const material = [
   MatFormFieldModule,
   MatGridListModule,
   MatDialogModule,
-  MatStepperModule
+  MatStepperModule,
+  BrowserAnimationsModule,
+  MatTooltipModule
 ]
 @NgModule({
 

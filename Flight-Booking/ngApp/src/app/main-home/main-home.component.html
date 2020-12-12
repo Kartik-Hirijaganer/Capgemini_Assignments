@@ -1,42 +1,43 @@
  <!-- upper section -->
 
- <div class="card">
-  <div *ngIf="_authService.loggedIn()">
-    <h1>Welcome !!</h1>
+<div class="card">
+    <!-- <div *ngIf="_authService.loggedIn()">
+      <h1>Welcome !!</h1>
+    </div> -->
+  
+  <div class="upper-section">
+    <img class="" src="/assets/images/flight1.jpg">
   </div>
- 
- <div class="upper-section">
-   <img class="" src="/assets/images/flight1.jpg">
- </div>
- <br>
- <br>
- <h1 class="title">SEARCH FLIGHTS</h1>
- <br><br>
- 
- <div class="search-box z-depth-5">
-   <form #searchForm="ngForm" class="form" (ngSubmit)="onSubmit(searchForm)">
-     <div class="form-row">
-       <div class="col-4 form-group">
-         <!-- <label for="source">FROM</label> -->
-         <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" placeholder="FROM" class="form-control" required>
-         <small class="text-danger" [class.d-none]="source.valid || source.untouched">source is required</small>
-       </div>
- 
-       <div class="form-row">
-         <a class="material-icons action-btn" (click)="swap(flightSearchData.source,flightSearchData.destination)">compare_arrows</a>
-       </div>
- 
-       <div class="col-4 form-group">
-         <input #destination="ngModel" [class.is-invalid]="destination.invalid &&destination.touched" [(ngModel)]="flightSearchData.destination" type="text" name="destination" class="form-control" placeholder="TO" required>
-         <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
-       </div>
-       <div class="col-3 form-group">
-         <input  #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" name="date" type="text" class="form-control datepicker" placeholder="DATE">
-         <small class="text-danger" [class.d-none]="date.valid || date.untouched">Date is required</small>
-       </div>
-     </div>
-     <button [disabled]="!searchForm.form.valid" type="submit" class="btn btn-success search">SEARCH</button>
-   </form>
+  <br>
+  <br>
+  <h1 class="title">SEARCH FLIGHTS</h1>
+  <br><br>
+  
+  <div class="search-box z-depth-5">
+    <form #searchForm="ngForm" class="form" (ngSubmit)="onSubmit(searchForm)">
+      <div class="form-row">
+        <div class="col-4 form-group">
+          <!-- <label for="source">FROM</label> -->
+          <input #source="ngModel" [class.is-invalid]="source.invalid && source.touched" [(ngModel)]="flightSearchData.source" type="text" name="source" placeholder="FROM" class="form-control" required>
+          <small class="text-danger" [class.d-none]="source.valid || source.untouched">source is required</small>
+          <small class="text-danger" *ngIf="this.isSearchError">Source and Destination cannot be same</small>
+        </div>
+  
+        <div class="form-row">
+          <a class="material-icons action-btn" (click)="swap(flightSearchData.source,flightSearchData.destination)">compare_arrows</a>
+        </div>
+  
+        <div class="col-4 form-group">
+          <input #destination="ngModel" [class.is-invalid]="destination.invalid &&destination.touched" [(ngModel)]="flightSearchData.destination" type="text" name="destination" class="form-control" placeholder="TO" required>
+          <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
+        </div>
+        <div class="col-3 form-group">
+          <input  #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" name="date" type="text" class="form-control datepicker" placeholder="DATE">
+          <small class="text-danger" [class.d-none]="date.valid || date.untouched">Date is required</small>
+        </div>
+      </div>
+      <button [disabled]="!searchForm.form.valid" type="submit" class="btn btn-success search">SEARCH</button>
+    </form>
  </div>
  
  <br>
@@ -66,12 +67,14 @@
          <td>{{f.destination}}</td>
          <td>{{f.fare | currency:'INR':'symbol'}}</td>
          <td>
-            <button type="button" *ngIf="_authService.loggedIn()" (click)="bookNow(f)" class="btn btn-info">Book Now</button>
-           </td>
+           <div matTooltip="Login to book your ticket." [matTooltipDisabled]="_authService.loggedIn()">
+            <button type="button" [disabled]="!_authService.loggedIn()" (click)="bookNow(f)" class="btn btn-book">Book Now</button>
+           </div>
+          </td>
        </tr>
      </table>
- </div>
- </div>
+  </div>
+</div>
  
 <!-- <div class="container">
   <router-outlet></router-outlet>            

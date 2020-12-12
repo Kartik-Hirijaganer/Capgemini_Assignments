@@ -18,19 +18,26 @@ import { BookFlightService } from '../bookService/book-flight.service';
 export class MainHomeComponent implements OnInit {
   
   flightSearchData:SearchData = new SearchData;
+  isDisable = false;
+  isSearchError = false;
+
+  // errorSource = '';
 
   constructor(public _authService: AuthService, public searchService: SearchService, private _router: Router, public dialog: MatDialog, private bookService: BookFlightService) { }
 
   ngOnInit(): void {
-    
+    this.disable();
   }
 
   
 
   onSubmit(form: NgForm){
+    if(form.value.source === form.value.destination){
+      this.isSearchError = true;
+    }
     this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
       this.searchService.flights = res as FlightData[];
-      console.log(res);
+      //console.log(res);
     });
   }
 
@@ -50,6 +57,12 @@ export class MainHomeComponent implements OnInit {
   //     return true;
   //   }
   // }
+
+  disable(){
+    if(this._authService.loggedIn()){
+      this.isDisable = true;
+    }
+  }
   swap(source: string, des: string){
     this.flightSearchData.destination = source;
     this.flightSearchData.source = des;

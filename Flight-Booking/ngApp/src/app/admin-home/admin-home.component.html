@@ -11,16 +11,15 @@
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="airLine" #name="ngModel" [(ngModel)]="adminService.selectedFlight.airLine" placeholder="Enter airLine name" >
+                  <input type="text" name="airLine" #name="ngModel" [(ngModel)]="adminService.selectedFlight.airLine">
                   <label>AirLine :
-                    <!-- <label class="red-text">*</label> -->
                   </label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="flightName" #name="ngModel" [(ngModel)]="adminService.selectedFlight.flightName" placeholder="flightName" required>
+                  <input type="text" name="flightName" #name="ngModel" [(ngModel)]="adminService.selectedFlight.flightName" required>
                   <label>Flight Name :
                     <label class="red-text">*</label>
                   </label>
@@ -29,29 +28,22 @@
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="source" #name="ngModel" [(ngModel)]="adminService.selectedFlight.source" placeholder="Enter source">
+                  <input type="text" name="source" #name="ngModel" [(ngModel)]="adminService.selectedFlight.source">
                   <label>From:</label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="destination" #name="ngModel" [(ngModel)]="adminService.selectedFlight.destination" placeholder="Enter destination">
+                  <input type="text" name="destination" #name="ngModel" [(ngModel)]="adminService.selectedFlight.destination">
                   <label>To:</label>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-field col s12">
-                  <input type="text" name="fare" #name="ngModel" [(ngModel)]="adminService.selectedFlight.fare" placeholder="fare">
+                  <input type="text" name="fare" #name="ngModel" [(ngModel)]="adminService.selectedFlight.fare">
                   <label>Fare :</label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <input type="text" name="seatCount" #name="ngModel" [(ngModel)]="adminService.selectedFlight.seatCount" placeholder="seatCount">
-                  <label>Seat Count :</label>
                 </div>
               </div>
 
@@ -59,7 +51,6 @@
                 <div class="input-field col s12">
                   <button class="btn success" type="submit" [disabled]="!flightForm.valid">Submit</button>
                   <button class="btn btn-danger" type="button" (click)="resetForm(flightForm)">Reset</button>
-                  <!-- <button class="btn btn-custom" type="submit" [disabled]="!flightForm.valid">Submit</button> -->
                 </div>
               </div>
             </form>
@@ -69,22 +60,20 @@
               <table class="responsive-table highlight">
                   <thead>
                     <tr>
-                      <th class="tbl-head">Air-Line</th>
-                      <th class="tbl-head">Flight No</th>
-                      <th class="tbl-head">From</th>
-                      <th class="tbl-head">To</th>
-                      <th class="tbl-head">Fare</th>
-                      <th class="tbl-head">Seats</th>
+                      <th class="tbl-head">AIR-LINE</th>
+                      <th class="tbl-head">FLIGHT</th>
+                      <th class="tbl-head">FROM</th>
+                      <th class="tbl-head">TO</th>
+                      <th class="tbl-head">FARE</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tr class="dispForm" *ngFor="let f of adminService.flights">
-                    <td>{{f.airLine}}</td>
-                    <td>{{f.flightName}}</td>
-                    <td>{{f.source}}</td>
-                    <td>{{f.destination}}</td>
+                    <td>{{f.airLine.toUpperCase()}}</td>
+                    <td>{{f.flightName.toUpperCase()}}</td>
+                    <td>{{f.source.toUpperCase()}}</td>
+                    <td>{{f.destination.toUpperCase()}}</td>
                     <td>{{f.fare | currency:'INR':'symbol'}}</td>
-                    <td >{{f.seatCount}}</td>
                     <td>
                         <a class="action-btn" (click)="onEdit(f)">
                           <i class="material-icons">edit</i>

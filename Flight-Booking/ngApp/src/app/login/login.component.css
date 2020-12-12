@@ -1,5 +1,6 @@
 .card-header{
-  background-color:	#b0a0cc;
+  /* background-color:	#b0a0cc; */
+  background-color: #b0d7e4;
   color: #0c0c3d;
 }
 
@@ -17,5 +18,20 @@ label {
 }
 
 .card-body{
-  background-color: #e6ddf7;
+  /* background-color: #e6ddf7; */
+  background-color: #F0FFFF;
+}
+
+.card{
+  margin-left: 100px;
+  max-width: 600px;
+}
+
+.btn{
+  margin-right: 10px;
+  background-color: #00688B;
+}
+
+.text-danger{
+  font-size: 80%;
 }

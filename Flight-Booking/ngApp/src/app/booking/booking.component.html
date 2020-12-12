@@ -28,7 +28,7 @@
 </div> -->
 
 <!-- stepper -->
-<mat-horizontal-stepper  class="card">
+<mat-horizontal-stepper class="card">
   <mat-step class="step" label="Passenger Details">
     <form #bookForm="ngForm" class="form">
 
@@ -53,7 +53,7 @@
       </div>
 
     </form>
-    <button mat-raised-button color="primary" matStepperNext>next</button>
+    <button mat-raised-button class="btn" matStepperNext>next</button>
   </mat-step>
   <mat-step label="Ticket Summary">
     <div>
@@ -65,15 +65,15 @@
     <div>
       <h3>Date : {{date}}</h3>
     </div>
-    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-    <button mat-raised-button color="primary" class="next" matStepperNext>Confirm</button>
+    <button mat-raised-button class="btn" matStepperPrevious>Back</button>
+    <button mat-raised-button class="next btn" matStepperNext>Confirm</button>
 
   </mat-step>
   <mat-step label="Payment">
     <br><br>
     <h3>Final step and your ready to go!</h3>
     <br><br><br>
-    <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+    <button mat-raised-button class="btn" matStepperPrevious>Back</button>
     <button (click)="payWithRazor()" class="btn waves-effect waves-light next" matStepperNext type="submit" name="action">PAY
       <i class="material-icons right">send</i>
     </button>

@@ -20,6 +20,7 @@ export class AdminHomeComponent implements OnInit {
 
   private _isEdit = false;
   ngOnInit(): void {
+    //console.log('inside admin');
     this.resetForm();
     this.refreshFlightList();
   }
@@ -33,8 +34,7 @@ export class AdminHomeComponent implements OnInit {
       flightName: "",
       source: "",
       destination: "",
-      fare: 0,
-      seatCount: 0
+      fare: 0
     }
   }
 

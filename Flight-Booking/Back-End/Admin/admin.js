@@ -51,8 +51,7 @@ app.post('/admin/add/flight', (req, res) => {
     flightName: req.body.flightName,
     source: req.body.source,
     destination: req.body.destination,
-    fare: req.body.fare,
-    seatCount:req.body.seatCount
+    fare: req.body.fare
   }
 
   axios.post("http://localhost:3000/flight/add", newFlight).then((response)=>{
@@ -73,8 +72,7 @@ app.put('/admin/edit/flight/:id', (req, res) => {
     flightName: req.body.flightName,
     source: req.body.source,
     destination: req.body.destination,
-    fare: req.body.fare,
-    seatCount:req.body.seatCount
+    fare: req.body.fare
   }
 
   axios.put(

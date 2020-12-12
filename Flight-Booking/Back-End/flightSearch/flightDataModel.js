@@ -5,6 +5,5 @@ mongoose.model("flight", {
   flightName:String,
   source: String,
   destination: String,
-  fare: Number,
-  seatCount:Number
+  fare: Number
 });

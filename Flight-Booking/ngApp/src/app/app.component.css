@@ -1,7 +1,8 @@
 /* navbar section */
 .navbar {
   justify-content: space-between;
-  background-color: #32CD32;
+  /* background-color: #32CD32; */
+  background-color: #00688B;
   height: 100px;
 }
 
@@ -41,6 +42,7 @@ span {
 
 .page-footer{
   margin-bottom: 0px;
+  background-color:#507786;
 }
 .up-footer-head{
   margin-top: 30px;

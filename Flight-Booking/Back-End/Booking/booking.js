@@ -26,26 +26,12 @@ app.get("/bookingById/:bookingId", (req, res)=>{
   })
 });
 
-//to print ticket details will be used by checkIn 
-// app.get("/bookingById/:id",(req,res) => {
-
-//   booking.findById(req.params.id).then((booking)=> {
-//     console.log(booking);
-//       if(booking){
-//           axios.get('http://localhost:3200/user/'+ booking.userId).then((userData)=> {
-//           var bookingObj = {firstName : userData.data.firstName, flightName:''};
-//           console.log(booking.flightId);
-//           axios.get('http://localhost:3000/flight/' + booking.flightId).then((flightData)=> {
-//             bookingObj.flightName = flightData.data.flightName;
-//             res.json(bookingObj);
-//       });
-//     });
-//   }
-//   else {
-//           res.send("Invalid Booking");
-//       }
-//   });
-// });
+app.get("/booking/all", (req, res) => {
+  booking.find().then((data) => {
+    //console.log(data);
+    res.send(data);
+  })
+})
 
 /* 
   When user will click view all bookings this get request will be called

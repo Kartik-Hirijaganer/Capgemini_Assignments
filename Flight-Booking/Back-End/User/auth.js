@@ -14,16 +14,16 @@ const handleErrors = (err)=>{
 
   //incorrect email
   if(err.message==="incorrect email"){
-    errors.emailId="not a registered email";
+    errors.emailId="Not a registered Email";
   }
 
   //incorrect password
   if(err.message==="incorrect password"){
-    errors.password="password is incorrect";
+    errors.password="Incorrect Password";
   }
   //duplicate errors
   if(err.code===11000){
-    errors.emailId="email is already registered";
+    errors.emailId="Already a registered Email";
     return errors;
   }
 

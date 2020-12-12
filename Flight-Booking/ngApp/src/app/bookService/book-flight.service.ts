@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { FlightData } from '../shared/flight-data.model';
+import { Router } from '@angular/router';
 
 
 
@@ -10,7 +11,12 @@ import { FlightData } from '../shared/flight-data.model';
 })
 export class BookFlightService {
   userId = '';
+  userType = '';
   bookingId:any;
+  ticket:any=[];
+
+  src:string = '';
+  des:string = '';
 
   flight: FlightData[] = [];
   userDetails= {
@@ -22,8 +28,9 @@ export class BookFlightService {
   readonly baseURL = 'http://localhost:3300/booking/add';
   readonly bookingsUrl = 'http://localhost:3300/booking/allbookings/';
   readonly cancelUrl = "http://localhost:3300/booking/cancel/";
+  readonly allBookingsUrl = "http://localhost:3300/booking/all";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _router: Router) { }
 
   bookedFlight(){
     return this.flight;
@@ -42,5 +49,38 @@ export class BookFlightService {
   deleteBooking(bookingId: number){
     //console.log(this.cancelUrl+bookingId);
     return this.http.delete(this.cancelUrl+ bookingId);
+  }
+
+  getAllBookedFlights(){
+    return this.http.get(this.allBookingsUrl);
+  }
+
+  checkIn(ticket:any){
+    this.shortName(ticket.flight.source, ticket.flight.destination)
+    this.ticket = ticket;
+    console.log('inside checkin');
+    this._router.navigate(['/checkIn']);
+  }
+
+  shortName(src:string, des:string){
+    let s = src.toLowerCase();
+    let d = des.toLowerCase()
+    switch(s){
+      case "mumbai":
+        this.src = "MUM";
+        break;
+      case "delhi":
+        this.src = "DEL";
+        break;
+    }
+
+    switch(d){
+      case "mumbai":
+        this.des = "MUM";
+        break;
+      case "delhi":
+        this.des = "DEL";
+    }
+
   }
 }

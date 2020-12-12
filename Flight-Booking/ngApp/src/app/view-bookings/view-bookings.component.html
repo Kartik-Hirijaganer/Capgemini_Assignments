@@ -2,7 +2,7 @@
 <!-- new table -->
 
 <!-- user table -->
-<table class="highlight responsive-table">
+<table class="highlight booking-table responsive-table">
   <thead>
     <tr id="head">
         <th>NAME</th>
@@ -19,8 +19,8 @@
     <tr id="data">
       <td>
         <div id="name">{{f.userDetails.firstName}} {{f.userDetails.lastName}}</div>
-        <button class="waves-effect waves-light btn" (click)="cancelBooking(f.bookingId)">cancel</button>
-        <button class="waves-effect waves-light btn checkIn">check-in</button>
+        <button class="waves-effect waves-light btn" *ngIf="this.isDisable" (click)="cancelBooking(f.bookingId)">cancel</button>
+        <button (click)="this.bookFlightService.checkIn(f)" *ngIf="this.isDisable" class="waves-effect waves-light btn checkIn">check-in</button>
       </td>
       <td>{{f.bookingId}}</td>
       <td>{{f.flight.airLine.toUpperCase()}}</td>

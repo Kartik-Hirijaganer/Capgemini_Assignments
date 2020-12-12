@@ -76,8 +76,7 @@ app.post('/flight/add', (req, res)=>{
     flightName: req.body.flightName,
     source: req.body.source,
     destination: req.body.destination,
-    fare: req.body.fare,
-    seatCount:req.body.seatCount
+    fare: req.body.fare
   }
 
   var flight1 = new flight(newFlight);
@@ -100,8 +99,7 @@ app.put('/flight/edit/:id', (req, res) => {
     flightName: req.body.flightName,
     source: req.body.source,
     destination: req.body.destination,
-    fare: req.body.fare,
-    seatCount:req.body.seatCount
+    fare: req.body.fare
   }
   //var update = { "$set": { "name": name, "genre": genre, "author": author, "similar": similar}}
   flight.findByIdAndUpdate(req.params.id, 

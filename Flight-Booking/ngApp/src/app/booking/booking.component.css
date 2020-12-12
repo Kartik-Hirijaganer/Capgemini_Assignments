@@ -3,7 +3,6 @@ span {
   padding-right: 3rem;
 }
 
-
 table{
   margin-top: 20px;
   margin-bottom: 30px;
@@ -27,19 +26,19 @@ h2{
 }
 
 .btn{
-background-color: #7b1fa2;
+background-color: #00688B;
 color: white;
 }
 
 .card{
-  background-color: #b0a0cc;
+  background-color: #79CDCD;
   min-height: 300px;
   margin-top: 0px;
   margin-bottom: 100px;
 }
 
 h3{
-  color: #7a247a;
+  color: #0c0c3d;
 }
 .form{
   max-width: 300px;
@@ -61,4 +60,12 @@ thead{
 
 .next{
   margin-left: 20px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon{
+  background-color: #00688B;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected {
+  background-color: #00688B; 
 }

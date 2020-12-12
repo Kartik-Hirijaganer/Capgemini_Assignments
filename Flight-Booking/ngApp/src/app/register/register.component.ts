@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { BookFlightService } from '../bookService/book-flight.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,10 @@ export class RegisterComponent implements OnInit {
     password:''
   }
 
-  constructor(private _auth: AuthService, private _router: Router) { }
+  isError = false;
+  errorMsg = '';
+
+  constructor(private _auth: AuthService, private _router: Router, private bookFlightService: BookFlightService) { }
 
   ngOnInit(): void {
   }
@@ -33,18 +37,16 @@ export class RegisterComponent implements OnInit {
             userID: res.userId,
             userType: res.userType
           }
+          this.bookFlightService.userId = res.userId;
           //store
           localStorage.setItem('token', JSON.stringify(tokenObj));
           this._router.navigate(['/mainHome']);
-          // if(res.userType=="admin"){
-          //   this._router.navigate(['/adminHome']);
-          // }
-          // else{
-          //   this._router.navigate(['/mainHome'])
-          // }
         },
         err => {
-          console.log(err)
+          console.log(err.error);
+          this.isError = true;
+          this.errorMsg = err.error.Error;
+          this.ngOnInit();
         }
       )
   }

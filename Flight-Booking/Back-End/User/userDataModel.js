@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: String,
-    required: true
+    // required: true
   },
   mobileNo:{
     type:Number,

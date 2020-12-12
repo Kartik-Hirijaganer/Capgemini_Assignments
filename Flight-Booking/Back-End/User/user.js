@@ -28,7 +28,6 @@ app.post('/user/login', async (req, res) => {
   try{
     const myuser = await user.login(emailId, password);
     const token = auth.createToken(myuser._id);
-    //res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
     var tokenObj = {
       token: token,
       userId: myuser._id,
@@ -39,10 +38,10 @@ app.post('/user/login', async (req, res) => {
     console.log('success');
   }
   catch (err) {
-    console.log(err);
+    //console.log(err);
     //res.status(200).json(err);
     const error = auth.handleErrors(err);
-    res.status(400).json(error);
+    res.status(400).send(error);
     console.log(error);
   }
 });
@@ -52,7 +51,7 @@ app.post('/user/login', async (req, res) => {
 //POST method when a new user will signUp
 const maxAge = auth.maxAge;
 app.post('/user/signUp', async (req, res)=>{
-  console.log('inside post signUp');
+  //console.log('inside post signUp');
   /*
     Form form we will send date as date-type we will convert it to string and store in db.
     date format: year/ month/ date

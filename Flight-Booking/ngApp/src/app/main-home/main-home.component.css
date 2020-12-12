@@ -5,8 +5,9 @@
 
 .btn-success{
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  /* background-color: #28a745;
+  border-color: #28a745; */
+  background-color: #00688B;
 }
 
 label {
@@ -33,12 +34,12 @@ h1 {
 .card{
   margin-top: 0px;
   margin-bottom: 0px;
-  /* background-image: linear-gradient(rgb(19,61,110),rgb(33, 109, 197)); */
-  background-color: #ddd3ee;
+  /* background-color: #ddd3ee; */
+  background-color: #F0FFFF;
 }
 
 .search-box{
-  background-color: #c0aee0;
+  background-color: #b0d7e4;
   max-width: 1000px;
   margin-left: 230px;
   padding: 50px 50px 50px 50px;
@@ -62,3 +63,10 @@ h1 {
   margin-left: 410px;
 }
 
+.btn-book{
+  background-color: #00688B;
+}
+
+.text-danger{
+  font-size: medium;
+}

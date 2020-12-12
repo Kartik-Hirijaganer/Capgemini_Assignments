@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
-
-//import { Admin } from './admin.model';
 import { FlightData } from './flight-data.model';
 
 @Injectable({

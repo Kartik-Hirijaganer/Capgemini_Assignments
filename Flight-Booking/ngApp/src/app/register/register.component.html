@@ -5,31 +5,31 @@
 
       <div class="card z-depth-4 rounded-0">
         <div class="card-header">
-          <h3 class="mb-0 title">Register</h3>
+          <h3 class="mb-0 title">REGISTER</h3>
         </div>
         <div class="card-body">
           <form #registerForm="ngForm" class="form">
             <div class="form-group">
-              <label for="firstName">FirstName</label>
+              <label for="firstName">First Name</label>
               <input #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched" [(ngModel)]="registerUserData.firstName" type="text" name="firstName" class="form-control rounded-0" required>
               <small class="text-danger" [class.d-none]="firstName.valid || firstName.untouched">FirstName is required</small>
             </div>
 
             <div class="form-group">
-              <label for="lastName">LastName</label>
+              <label for="lastName">Last Name</label>
               <input #lastName="ngModel" [class.is-invalid]="lastName.invalid && lastName.touched" [(ngModel)]="registerUserData.lastName" type="text" name="lastName" class="form-control rounded-0" required>
               <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">LastName is required</small>
             </div>
 
-            <div class="form-group">
-              <label for="dateOfBirth">Date of Birth</label>
-                <input #dateOfBirth="ngModel" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" [(ngModel)]="registerUserData.dateOfBirth" class="form-control" type="date" name="dateOfBirth" id="dateOfBirth">
+            <!-- <div class="form-group">
+              <label for="dateOfBirth">Date Of Birth</label>
+                <input #dateOfBirth="ngModel" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" [(ngModel)]="registerUserData.dateOfBirth" class="form-control" type="date" name="dateOfBirth" id="dateOfBirth" required>
                 <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date Of Birth is required</small>
-            </div>
+            </div> -->
 
             <div class="form-group">
-              <label for="mobileNo">Mobile NO.</label>
-              <input #mobileNo="ngModel" [class.is-invalid]="mobileNo.invalid && mobileNo.touched" [(ngModel)]="registerUserData.mobileNo" class="form-control rounded-0" type="tel" name="mobileNo" id="mobile">
+              <label for="mobileNo">Mobile No.</label>
+              <input #mobileNo="ngModel" [class.is-invalid]="mobileNo.invalid && mobileNo.touched" [(ngModel)]="registerUserData.mobileNo" class="form-control rounded-0" type="tel" name="mobileNo" id="mobile" required>
               <small class="text-danger" [class.d-none]="mobileNo.valid || mobileNo.untouched">MobileNo. is required</small>
             </div>
 
@@ -37,14 +37,7 @@
               <label class="radio" for="gender">
                 <span>Gender </span>
               </label>
-              <!-- <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="male" name="gender" required value="male">
-              <label class="radio" for="male">Male</label>
 
-              <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="female" name="gender" required value="female">
-              <label class="radio" for="female">Female</label>
-
-              <input class="radio" #gender="ngModel" [(ngModel)]="registerUserData.gender" type="radio" id="other" name="gender" required value="other">
-              <label class="radio" for="other">Other</label> -->
               <label>
                 <input #gender="ngModel" class="with-gap" name="group3"  [(ngModel)]="registerUserData.gender" type="radio" checked required value="male" />
                 <span>Male</span>
@@ -66,8 +59,9 @@
 
             <div class="form-group">
               <label for="emailId">Email</label>
-              <input #emailId="ngModel" [class.is-invalid]="emailId.invalid && emailId.touched" [(ngModel)]="registerUserData.emailId" type="text" name="emailId" class="form-control rounded-0" required>
+              <input #emailId="ngModel" [class.is-invalid]="emailId.invalid && emailId.touched" [(ngModel)]="registerUserData.emailId" type="email" name="emailId" class="form-control rounded-0" required>
               <small class="text-danger" [class.d-none]="emailId.valid || emailId.untouched">Email is required</small>
+              <small class="text-danger" *ngIf="this.isError">{{this.errorMsg}}</small>
             </div>
 
             <div class="form-group">
@@ -86,3 +80,4 @@
 
   </div>
 </div>
+

@@ -1,10 +1,11 @@
 .card-header{
-  background-color:	#b0a0cc;
-  color: #0c0c3d;
+  /* background-color:	#b0a0cc; */
+  background-color: #b0d7e4;
+  color: #fff;
 }
 
 .card {
-  background-color:	#e6ddf7;
+  background-color: #F0FFFF;
   max-height: 900px;
   max-width: 700px;
 }
@@ -24,4 +25,8 @@ label {
   font-size: 30px;
   min-height: 50px;
   padding-top: 6px;
+}
+
+.btn{
+  background-color: #00688B;
 }

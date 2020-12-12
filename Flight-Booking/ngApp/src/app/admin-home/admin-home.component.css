@@ -64,7 +64,7 @@ a.action-btn:hover{
 } */
 
 div.card{
-  background-color: #b0a0cc;
+  background-color: #79CDCD;
   color:#02082c;
   width: 95%;
   /* margin: 10px 10px; */
@@ -89,6 +89,6 @@ div.card{
 }
 
 .vl {
-  border-left: 6px solid #867a9b;
-  /* height: 500px; */
+  border-left: 6px solid #5c9c9c;
+  height: 600px;
 }

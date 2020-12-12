@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BookFlightService } from '../bookService/book-flight.service';
-// import { Router } from '@angular/router';
+import * as printJS from 'print-js';
 
 @Component({
   selector: 'app-payment-success',
@@ -8,14 +8,19 @@ import { BookFlightService } from '../bookService/book-flight.service';
   styleUrls: ['./payment-success.component.css']
 })
 export class PaymentSuccessComponent implements OnInit {
+  
+
 
   constructor(public bookFlightService: BookFlightService) { }
-
+  print(){
+    printJS({
+       printable: 'printJS-form',
+        type: 'html',
+        targetStyles: ['*']
+      });
+  }
   ngOnInit(): void {
   }
 
-  sample(){
-    console.log(this.bookFlightService.bookingId.bookingId);
-  }
-
+  
 }

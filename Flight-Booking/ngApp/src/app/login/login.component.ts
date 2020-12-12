@@ -9,6 +9,11 @@ import { BookFlightService } from '../bookService/book-flight.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  isLoginError = false;
+  errorEmail = '';
+  errorPass = '';
+
+
   loginUserData = {
     emailId:'',
     password:''
@@ -31,6 +36,7 @@ export class LoginComponent implements OnInit {
           
           //storing userId in bookingService
           this.bookFlightService.userId = res.userId;
+          this.bookFlightService.userType = res.userType;
           console.log(res.userType);
           //store
           localStorage.setItem('token', JSON.stringify(tokenObj));
@@ -43,6 +49,12 @@ export class LoginComponent implements OnInit {
         },
         err => {
           console.log(err);
+          this.isLoginError = true;
+          this.errorEmail = err.error.emailId;
+          this.errorPass = err.error.password;
+          console.log(err.error.password);
+
+          this.ngOnInit();
         }
       )
   }

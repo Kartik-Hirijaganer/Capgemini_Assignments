@@ -10,15 +10,26 @@ import { BookFlightService } from '../bookService/book-flight.service';
 export class ViewBookingsComponent implements OnInit {
 
   bookedFlights:any = [];
+  isDisable = true;
 
   constructor(
-    private bookFlightService: BookFlightService,
+    public bookFlightService: BookFlightService,
      private route: ActivatedRoute
      ) { }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('userId');
-    this.viewBookedFlights(userId);
+    const userType = this.route.snapshot.paramMap.get('userType');
+
+    if(userType=='admin'){
+      console.log("admin");
+      this.isDisable = false;
+      this.viewAllBookings();
+    }
+    else{
+      this.viewBookedFlights(userId);
+    }
+    // this.viewBookedFlights(userId);
   }
 
   viewBookedFlights(userId: any){
@@ -50,17 +61,19 @@ export class ViewBookingsComponent implements OnInit {
         }
       )
     }
-    
-    // this.bookFlightService.deleteBooking(bookingId)
-    //   .subscribe(
-    //     res => {
-    //       this.viewBookedFlights(this.route.snapshot.paramMap.get('userId'));
-    //       console.log('booking cancelled');
-    //     },
-    //     err => {
-    //       console.log(err);
-    //     }
-    //   )
+  }
+
+  viewAllBookings(){
+      this.bookFlightService.getAllBookedFlights()
+        .subscribe(
+          res => {
+            console.log(res);
+            this.bookedFlights = res;
+          },
+          err => {
+            console.log(err);
+          }
+        )
   }
 
 }
