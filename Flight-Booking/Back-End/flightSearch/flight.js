@@ -145,37 +145,58 @@ app.get("/flights/:source/:destination", (req, res) => {
 
                             /* POST Methods */
 //ADD NEW FLIGHT
+//app.use(express.json());
+/**
+ * @swagger
+ * definitions:
+ *  Flight:
+ *   type: object
+ *   properties:
+ *    flightName:
+ *      type: string
+ *      description: Name of the flight
+ *      example: 'GA-101'
+ *    airLine:
+ *      type: string
+ *      description: name of the air-line
+ *      example: 'Go-Air'
+ *    source:
+ *      type: string
+ *      description: source
+ *      example: 'mumbai'
+ *    destination:
+ *      type: string
+ *      description: Destination
+ *      example: 'delhi'
+ *    fare:
+ *      type: number
+ *      description: fare of the flight
+ *      example: 2000
+ *    
+ */
+
+
 /**
  * @swagger
  * /flight/add:
- *  post:
- *    summary: Creates a new flight.
- *    description: Used to create new flight
- *    requestBody:
- *      content:
- *        application/json:
- *          schema:
- *            type: Object
- *            properties:
- *              airLine:
- *                type: String
- *              name:
- *                type: String
- *              source:
- *                type: String
- *              destination:
- *                type: String
- *            example:
- *              airlines: Air India
- *              name: AI4131
- *              source: PNQ
- *              destination: BOM
- *              fare: 4000
- *    responses:
- *         '200':
- *           description: A successful response
- *         '500':
- *           description: Server error
+ *   post:
+ *     tags:
+ *       - Flights
+ *     description: Creates a new flight
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: flight
+ *         description: Flight object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Flight'
+ *     responses:
+ *       200:
+ *         description: Flight Successfully added
+ *       400:
+ *         description: Server Error
  */
 app.post('/flight/add', (req, res)=>{
   var newFlight = {
@@ -200,23 +221,35 @@ app.post('/flight/add', (req, res)=>{
 
                             /* PUT Methods */
 //UPDATE FLIGHT     
+
 /**
  * @swagger
  * /flight/edit/{id}:
- *  put:
- *    description: Use to get all flights
- *    responses:
- *      '200':
- *        description: A successful response
- *      '400':
- *        description: Server error.
- *  parameters:
- *        - in: path
- *          name: id
- *          required: true
- *          schema:
- *            type: String
- *          description: Flight-Id
+ *   put:
+ *     tags:
+ *       - Flights
+ *     description: Creates a new flight
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: flight object id
+ *         in: path
+ *         required: true
+ *         schema:
+ *          type: string
+ *          description: user's object id
+ *       - name: flight
+ *         description: Flight object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Flight'
+ *     responses:
+ *       200:
+ *         description: Flight Successfully updated
+ *       400:
+ *         description: Server Error
  */
 app.put('/flight/edit/:id', (req, res) => {
 
@@ -249,7 +282,7 @@ app.put('/flight/edit/:id', (req, res) => {
  *    description: Use to delete flight by flight name
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: Flight successfully deleted
  *      '400':
  *        description: Server error.
  *  parameters:

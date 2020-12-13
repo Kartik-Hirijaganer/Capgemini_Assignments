@@ -64,6 +64,58 @@ app.get('/admin/flights', (req, res) => {
 
                             /* POST Methods */
 /*                        post method to add new flight by admin                 */
+
+/**
+ * @swagger
+ * definitions:
+ *  Flight:
+ *   type: object
+ *   properties:
+ *    flightName:
+ *      type: string
+ *      description: Name of the flight
+ *      example: 'GA-101'
+ *    airLine:
+ *      type: string
+ *      description: name of the air-line
+ *      example: 'Go-Air'
+ *    source:
+ *      type: string
+ *      description: source
+ *      example: 'mumbai'
+ *    destination:
+ *      type: string
+ *      description: Destination
+ *      example: 'delhi'
+ *    fare:
+ *      type: number
+ *      description: fare of the flight
+ *      example: 2000
+ *    
+ */
+
+/**
+ * @swagger
+ * /admin/add/flight:
+ *   post:
+ *     tags:
+ *       - Flights
+ *     description: Creates a new flight
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: flight
+ *         description: Flight object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Flight'
+ *     responses:
+ *       200:
+ *         description: Flight Successfully added
+ *       400:
+ *         description: Server Error
+ */
 app.post('/admin/add/flight', (req, res) => {
   var newFlight = {
     airLine: req.body.airLine,
@@ -86,6 +138,35 @@ app.post('/admin/add/flight', (req, res) => {
 
                             /* PUT Methods */
 /*                       put method to edit flight by admin                */
+/**
+ * @swagger
+ * /admin/edit/flight/{id}:
+ *   put:
+ *     tags:
+ *       - Flights
+ *     description: Creates a new flight
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: id
+ *         description: flight object id
+ *         in: path
+ *         required: true
+ *         schema:
+ *          type: string
+ *          description: user's object id
+ *       - name: flight
+ *         description: Flight object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Flight'
+ *     responses:
+ *       200:
+ *         description: Flight Successfully updated
+ *       400:
+ *         description: Server Error
+ */
 app.put('/admin/edit/flight/:id', (req, res) => {
   var newFlight = {
     airLine: req.body.airLine,
@@ -117,7 +198,7 @@ app.put('/admin/edit/flight/:id', (req, res) => {
  *    description: Use to delete flight by flight name
  *    responses:
  *      '200':
- *        description: A successful response
+ *        description: Flight successfully deleted
  *      '400':
  *        description: Server error.
  *  parameters:
