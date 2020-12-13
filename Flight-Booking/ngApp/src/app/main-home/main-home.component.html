@@ -32,7 +32,7 @@
           <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
         </div>
         <div class="col-3 form-group">
-          <input  #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" name="date" type="text" class="form-control datepicker" placeholder="DATE">
+          <input  #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" name="date" type="date" min="2020-12-13" class="form-control" placeholder="DATE">
           <small class="text-danger" [class.d-none]="date.valid || date.untouched">Date is required</small>
         </div>
       </div>

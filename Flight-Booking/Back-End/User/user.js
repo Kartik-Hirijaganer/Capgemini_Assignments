@@ -5,11 +5,6 @@ const auth = require('./auth');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
-//swagger libraries
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
-
-
 //middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -24,26 +19,6 @@ mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/user_proj
   console.log('Database connected');
 });
 
-//swagger
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      version: "1.0.0",
-      title: "User Microservice",
-      description: "User microservice constains http methods",
-      contact: {
-        name: "BookMyFlight"
-      },
-      servers: ["http://localhost:3200"]
-    }
-  },
-  // ['.routes/*.js']
-  apis: ["user.js"]
-};
-
-//swagger middleware
-const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use("/flight/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //login method
 app.post('/user/login', async (req, res) => {

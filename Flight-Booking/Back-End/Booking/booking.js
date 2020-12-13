@@ -27,8 +27,8 @@ const swaggerOptions = {
   swaggerDefinition: {
     info: {
       version: "1.0.0",
-      title: "Flight Microservice",
-      description: "Flight microservice constains http methods will be used by admin",
+      title: "Booking Microservice",
+      description: "Booking microservice constains http methods",
       contact: {
         name: "BookMyFlight"
       },
@@ -153,7 +153,25 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
     console.log('booking success');
     });
 });
-
+//DELETE BOOKING
+/**
+ * @swagger
+ * /booking/cancel/{bookingId}:
+ *  delete:
+ *    description: Use to cancel
+ *    responses:
+ *      '200':
+ *        description: Booking successfully cancelled
+ *      '400':
+ *        description: Server error.
+ *  parameters:
+ *        - in: path
+ *          name: bookingId
+ *          required: true
+ *          schema:
+ *            type: number
+ *          description: bookingId
+ */
 
 app.delete("/booking/cancel/:bookingId", (req, res)=>{
   booking.deleteOne({bookingId: req.params.bookingId}).then((response)=>{
