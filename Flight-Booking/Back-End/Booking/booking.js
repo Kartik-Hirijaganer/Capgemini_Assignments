@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 //const axios = require('axios');
 const cors = require('cors');
 
+//swagger libraries
+const swaggerJsDoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+
+
 app.use(bodyParser.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
@@ -17,19 +22,56 @@ mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/booking_p
   console.log('Database connected');
 });
 
+//swagger
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      version: "1.0.0",
+      title: "Flight Microservice",
+      description: "Flight microservice constains http methods will be used by admin",
+      contact: {
+        name: "BookMyFlight"
+      },
+      servers: ["http://localhost:3300"]
+    }
+  },
+  // ['.routes/*.js']
+  apis: ["booking.js"]
+};
+
+//swagger middleware
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use("/booking/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 /*
   when user will checkIn this method will be called and ticket will be displayed.
 */
+//current no use
 app.get("/bookingById/:bookingId", (req, res)=>{
   booking.findOne({bookingId: req.params.bookingId}).then((data)=>{
     res.send(data);
   })
 });
 
+/**
+ * @swagger
+ * /booking/all:
+ *  get:
+ *    description: Use to get all bookings
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ *      '400':
+ *        description: Server error.
+ */
 app.get("/booking/all", (req, res) => {
   booking.find().then((data) => {
     //console.log(data);
-    res.send(data);
+    res.status(200).send(data);
+  }).catch(err => {
+    if(err){
+      res.status(400).json(`Error: ${err}`);
+    }
   })
 })
 
@@ -37,6 +79,25 @@ app.get("/booking/all", (req, res) => {
   When user will click view all bookings this get request will be called
   It will search in booking db all bookings having that userId(objectId).
 */
+
+/**
+ * @swagger
+ * /booking/allbookings/{userId}:
+ *  get:
+ *    description: Use to get all bookings of that user
+ *    responses:
+ *      '200':
+ *        description: A successful response
+ *      '400':
+ *        description: Server error.
+ *  parameters:
+ *        - in: path
+ *          name: userId
+ *          required: true
+ *          schema:
+ *            type: String
+ *          description: User Object Id
+ */
 app.get('/booking/allbookings/:userId', (req, res) => {
   //console.log('inside get'+req.params.userId);
   var objectId = mongoose.Types.ObjectId(req.params.userId);
@@ -85,35 +146,8 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
     },
     bookingId: bookingId
   }
-
-  // axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
-  //   const f = flight.data;
-  //   newBooking = {
-  //     userId: req.params.userId,
-  //     flight:{
-  //       flightName: flightName,
-  //       airLine: f.airLine,
-  //       source: f.source,
-  //       destination: f.destination,
-  //       fare: f.fare,
-  //     },
-  //     bookingId: bookingId
-  //   }
-    
-    // var booking1 = new booking(newBooking);
-    // booking1.save().then(() =>{
-    // res.send("BookingId is :"+bookingId);
-    // bookingId++;
-    //console.log(bookingId);
-      // });
-    // });
-
     var booking1 = new booking(newBooking);
     booking1.save().then(() =>{
-    //res.send(bookingId);
-    // var id = {
-    //   Id: bookingId
-    // }
     res.status(200).json({bookingId: bookingId});
     bookingId++;
     console.log('booking success');
@@ -137,3 +171,27 @@ app.listen(3300, (err) => {
   }
   console.log("Listening to port 3300");
 });
+
+
+//old booking post method axios
+// axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
+  //   const f = flight.data;
+  //   newBooking = {
+  //     userId: req.params.userId,
+  //     flight:{
+  //       flightName: flightName,
+  //       airLine: f.airLine,
+  //       source: f.source,
+  //       destination: f.destination,
+  //       fare: f.fare,
+  //     },
+  //     bookingId: bookingId
+  //   }
+    
+    // var booking1 = new booking(newBooking);
+    // booking1.save().then(() =>{
+    // res.send("BookingId is :"+bookingId);
+    // bookingId++;
+    //console.log(bookingId);
+      // });
+    // });
