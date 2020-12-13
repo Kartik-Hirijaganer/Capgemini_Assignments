@@ -16,6 +16,6 @@ export class DialogLoginComponent implements OnInit {
 
   viewBookings(){
     //viewBookings()
-    this._router.navigate(['/viewallbookings', this.bookFlightService.userId]);
+    this._router.navigate(['/viewallbookings', this.bookFlightService.userId, this.bookFlightService.userType]);
   }
 }

@@ -53,7 +53,7 @@
       </div>
 
     </form>
-    <button mat-raised-button class="btn" matStepperNext>next</button>
+    <button mat-raised-button class="btn" [disabled]="!bookForm.form.valid" matStepperNext>next</button>
   </mat-step>
   <mat-step label="Ticket Summary">
     <div>

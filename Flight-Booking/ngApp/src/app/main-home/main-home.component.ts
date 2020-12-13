@@ -35,10 +35,17 @@ export class MainHomeComponent implements OnInit {
     if(form.value.source === form.value.destination){
       this.isSearchError = true;
     }
-    this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
-      this.searchService.flights = res as FlightData[];
-      //console.log(res);
-    });
+    else{
+      this.isSearchError = false;
+      this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
+        this.searchService.flights = res as FlightData[];
+        //console.log(res);
+      });
+    }
+    // this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
+    //   this.searchService.flights = res as FlightData[];
+    //   //console.log(res);
+    // });
   }
 
   // refreshFlightList() {

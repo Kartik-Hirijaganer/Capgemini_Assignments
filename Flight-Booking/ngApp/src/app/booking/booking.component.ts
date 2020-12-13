@@ -76,7 +76,7 @@ export class BookingComponent implements OnInit {
           escape: false,
         }, 
         "theme": {
-          "color": "#32CD32"
+          "color": "#00688B"
         }
       };
       options.handler = ((response:any) => {
