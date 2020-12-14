@@ -175,7 +175,7 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
 
 app.delete("/booking/cancel/:bookingId", (req, res)=>{
   booking.deleteOne({bookingId: req.params.bookingId}).then((response)=>{
-    res.send(response);
+    res.status(200).send(response);
     console.log("booking cancelled");
   })
 });
@@ -190,7 +190,7 @@ app.listen(3300, (err) => {
   console.log("Listening to port 3300");
 });
 
-
+module.exports = app;
 //old booking post method axios
 // axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
   //   const f = flight.data;

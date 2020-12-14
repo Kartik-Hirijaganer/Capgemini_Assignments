@@ -54,7 +54,7 @@ app.use("/flight/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *    responses:
  *      '200':
  *        description: A successful response
- *      '400':
+ *      '404':
  *        description: Server error.
  *  parameters:
  *        - in: path
@@ -71,7 +71,7 @@ app.get('/flight/:flightName', (req, res)=>{
   }).catch(err => {
     if(err){
       //throw err;
-      res.status(400).json(`Error: ${err}`);
+      res.status(404).json(`Error: ${err}`);
     }
   })
 });
@@ -86,7 +86,7 @@ app.get('/flight/:flightName', (req, res)=>{
  *    responses:
  *      '200':
  *        description: A successful response
- *      '400':
+ *      '404':
  *        description: Server error.
  */
 app.get('/flights', (req, res) => {
@@ -95,7 +95,7 @@ app.get('/flights', (req, res) => {
   }).catch(err => {
     if(err){
       //throw err;
-      res.status(400).json(`Error: ${err}`);
+      res.status(404).json(`Error: ${err}`);
     }
   });
 });
@@ -264,7 +264,7 @@ app.put('/flight/edit/:id', (req, res) => {
   flight.findByIdAndUpdate(req.params.id, 
     {"$set": newFlight}, {new: true}).then((response) => {
     console.log(`flight updated`);
-    res.status(200).send(response.data);
+    res.status(200).send(response);
   }).catch(err => {
     if(err){
       //throw err;
@@ -315,7 +315,7 @@ app.listen(3000, (err) => {
   console.log("Listening to port 3000");
 })
 
-
+module.exports = app;
 
 
 //no current use

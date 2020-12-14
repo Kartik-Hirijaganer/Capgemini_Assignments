@@ -57,7 +57,7 @@ app.get('/admin/flights', (req, res) => {
   }).catch(err => {
     if(err){
       //throw err;
-      res.status(400).json(`Error: ${err}`);
+      res.status(404).json(`Error: ${err}`);
     }
   });
 });
@@ -126,7 +126,7 @@ app.post('/admin/add/flight', (req, res) => {
   }
 
   axios.post("http://localhost:3000/flight/add", newFlight).then((response)=>{
-   res.send(response.data);
+   res.status(200).send(response.data);
    console.log("New flight added.");
   }).catch(err => {
     if(err){
@@ -180,7 +180,7 @@ app.put('/admin/edit/flight/:id', (req, res) => {
     `http://localhost:3000/flight/edit/${req.params.id}`, newFlight
     ).then((response) => {
       console.log(response.data);
-      res.send(response.data);
+      res.status(200).send(response.data);
     }).catch(err => {
       if(err){
         //throw err;
@@ -233,6 +233,7 @@ app.listen(3100, (err) => {
   console.log("Listening to port 3100");
 })
 
+module.exports = app;
 
 
 

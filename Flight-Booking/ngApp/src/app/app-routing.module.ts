@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { MainHomeComponent } from './main-home/main-home.component';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { RegisterComponent } from './register/register.component';
-import { UserHomeComponent } from './user-home/user-home.component';
+//import { UserHomeComponent } from './user-home/user-home.component';
 import { ViewBookingsComponent } from './view-bookings/view-bookings.component';
 
 const routes: Routes = [
