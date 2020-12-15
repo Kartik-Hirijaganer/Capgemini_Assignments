@@ -30,6 +30,8 @@
         <div class="col-4 form-group">
           <input #destination="ngModel" [class.is-invalid]="destination.invalid &&destination.touched" [(ngModel)]="flightSearchData.destination" type="text" name="destination" class="form-control" placeholder="TO" required>
           <small class="text-danger" [class.d-none]="destination.valid || destination.untouched">destination is required</small>
+
+          <!-- <small class="text-danger" *ngIf="this.noFLights">No flights found for this route</small> -->
         </div>
         <div class="col-3 form-group">
           <input  #date="ngModel" [class.is-invalid]="date.invalid && date.touched" [(ngModel)]="flightSearchData.date" name="date" type="date" min="2020-12-13" class="form-control" placeholder="DATE">
@@ -41,6 +43,7 @@
  </div>
  
  <br>
+ <small class="text-danger no-flights" *ngIf="this.noFLights">No flights found for this route</small>
  
  <div class="col s7 table">
    <table class="responsive-table highlight">

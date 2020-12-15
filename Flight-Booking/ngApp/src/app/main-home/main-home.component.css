@@ -70,3 +70,8 @@ h1 {
 .text-danger{
   font-size: medium;
 }
+
+.no-flights{
+  text-align: center;
+  margin-left: 20px;
+}

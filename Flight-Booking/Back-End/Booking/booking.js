@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 //const axios = require('axios');
 const cors = require('cors');
 
+const sendEmail = require('./sendEmail');
+
 //swagger libraries
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
@@ -17,7 +19,7 @@ const mongoose = require('mongoose');
 require('./bookingDataModel');//acquiring our schema file
 const booking = mongoose.model("booking");//assigning schema model to booking constant
 
-//connecting mongoDB atlas dbName: booking_project, password:1234
+
 mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/booking_project?retryWrites=true&w=majority', ()=>{
   console.log('Database connected');
 });
@@ -126,10 +128,12 @@ app.get('/booking/allbookings/:userId', (req, res) => {
   we need to pass flightName and userId(objectId)-from url in form of json body
   Then only this function will work.
 */
-var bookingId = 110;
+var bookingId = 111;
+var userEmail = '';
 app.post("/booking/add/:flightName/:userId", (req, res)=>{
   let flightName = req.params.flightName;
-  // console.log('inside booking post');
+  userEmail = req.body.user.email;
+  //console.log(userEmail);
   var newBooking = {
     userId: mongoose.Types.ObjectId(req.params.userId),
     flight:{
@@ -148,9 +152,11 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
   }
     var booking1 = new booking(newBooking);
     booking1.save().then(() =>{
+    sendEmail.mailSend(userEmail);
     res.status(200).json({bookingId: bookingId});
     bookingId++;
     console.log('booking success');
+    //console.log(emailMsg);
     });
 });
 //DELETE BOOKING
@@ -190,7 +196,7 @@ app.listen(3300, (err) => {
   console.log("Listening to port 3300");
 });
 
-module.exports = app;
+module.exports =  app;
 //old booking post method axios
 // axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
   //   const f = flight.data;

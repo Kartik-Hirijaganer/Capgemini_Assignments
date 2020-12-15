@@ -37,9 +37,14 @@ export class LoginComponent implements OnInit {
           //storing userId in bookingService
           this.bookFlightService.userId = res.userId;
           this.bookFlightService.userType = res.userType;
-          console.log(res.userType);
+          //console.log(res.userType);
           //store
           localStorage.setItem('token', JSON.stringify(tokenObj));
+
+          // var received_tokenObj:any = localStorage.getItem('token');
+          // var myToken = {'received_token': JSON.parse(received_tokenObj)};
+          // console.log(myToken.received_token.userType+" working");
+
           if(res.userType=="admin"){
             this._router.navigate(['/adminHome']);
           }

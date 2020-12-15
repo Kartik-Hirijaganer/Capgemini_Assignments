@@ -68,7 +68,7 @@ describe('admin API', () => {
 
   describe("PUT /admin/edit/flight/:id", () => {
     it("It should PUT an existing flight", (done) => {
-        const id = "5fd79145b9bd083c283a45ad";
+        const id = "5fd8ddc77a15ce2e942ac651";
         const flight = {
             airLine: "Air India",
             flightName: "AI-300",
@@ -80,7 +80,7 @@ describe('admin API', () => {
             .put("/admin/edit/flight/" +id)
             .send(flight)
             .end((err, response) => {
-                console.log(response.data);
+                //console.log(response.data);
                 response.should.have.status(200);
                 response.body.should.be.a('object');
                 response.body.should.have.property('airLine').eq("Air India");

@@ -5,6 +5,8 @@ const auth = require('./auth');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
+const sms = require('./sms');
+
 //middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -72,10 +74,12 @@ app.post('/user/signUp', async (req, res)=>{
   var user1 = new user(newUserObj);
 
   try{
+    // sms.sendSms();
     const newUser = await user.create(user1);
     const token = auth.createToken(newUser._id);
     //res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge*1000});
     res.status(200).json({token: token, userId: newUser._id, userType: newUser.userType});
+    sms.sendSms();
     console.log("new user created with token");
   }catch (err) {
     //res.send(err);

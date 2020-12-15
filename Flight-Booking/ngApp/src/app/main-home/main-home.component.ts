@@ -20,6 +20,7 @@ export class MainHomeComponent implements OnInit {
   flightSearchData:SearchData = new SearchData;
   isDisable = false;
   isSearchError = false;
+  noFLights = false;
 
   // errorSource = '';
 
@@ -37,15 +38,23 @@ export class MainHomeComponent implements OnInit {
     }
     else{
       this.isSearchError = false;
+      this.noFLights = false;
       this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
         this.searchService.flights = res as FlightData[];
-        //console.log(res);
+        if(this.searchService.flights.length <= 0){
+          this.noFLights = true;
+          console.log(this.noFLights);
+        }
+        // console.log(this.searchService.flights);
       });
     }
-    // this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
-    //   this.searchService.flights = res as FlightData[];
-    //   //console.log(res);
-    // });
+    // else{
+    //   this.isSearchError = false;
+    //   this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
+    //     this.searchService.flights = res as FlightData[];
+    //     console.log(this.searchService.flights);
+    //   });
+    // }
   }
 
   // refreshFlightList() {
@@ -54,16 +63,6 @@ export class MainHomeComponent implements OnInit {
   //   });
   // }
 
-  // checkData(){
-  //   if(this.flightSearchData.destination === this.flightSearchData.source){
-  //     console.log('return false');
-  //     return false;
-  //   }
-  //   else{
-  //     console.log('return true');
-  //     return true;
-  //   }
-  // }
 
   disable(){
     if(this._authService.loggedIn()){
