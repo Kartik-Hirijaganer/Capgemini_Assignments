@@ -6,6 +6,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -19,7 +21,8 @@ const material = [
   MatDialogModule,
   MatStepperModule,
   BrowserAnimationsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatAutocompleteModule
 ]
 @NgModule({
 

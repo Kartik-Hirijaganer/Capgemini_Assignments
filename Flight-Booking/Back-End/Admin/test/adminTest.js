@@ -68,7 +68,7 @@ describe('admin API', () => {
 
   describe("PUT /admin/edit/flight/:id", () => {
     it("It should PUT an existing flight", (done) => {
-        const id = "5fd8ddc77a15ce2e942ac651";
+        const id = "5fd884c17a15ce2e942ac650";
         const flight = {
             airLine: "Air India",
             flightName: "AI-300",
@@ -99,7 +99,7 @@ describe('admin API', () => {
 
   describe("DELETE /admin/delete/flight/:flightName", () => {
     it("It should DELETE an existing flight", (done) => {
-        const flightName = "AI-300";
+        const flightName = "GA-300";
         chai.request(server)                
             .delete("/admin/delete/flight/" + flightName)
             .end((err, response) => {

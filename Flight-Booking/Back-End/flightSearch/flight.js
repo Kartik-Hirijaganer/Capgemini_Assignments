@@ -13,10 +13,9 @@ app.use(cors({origin: 'http://localhost:4200'}));
 
 const mongoose = require('mongoose');
 
-require("./flightDataModel");  //acquiring our schema file
-const flight = mongoose.model("flight"); //assigning schema model to flight constant
+require("./flightDataModel");
+const flight = mongoose.model("flight");
 
-//connecting mongoDB atlas dbName: flight_project, password:1234
 mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/flight_project',{ useNewUrlParser: true, useUnifiedTopology: true });
 console.log('Database connected');
 
@@ -33,7 +32,7 @@ const swaggerOptions = {
       servers: ["http://localhost:3000"]
     }
   },
-  // ['.routes/*.js']
+
   apis: ["flight.js"]
 };
 
@@ -42,8 +41,7 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/flight/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
-                            /* GET Methods */
-
+//GET METHODS
 
 //GET FLIGHT BY FLIGHT-NAME
 /**
@@ -70,7 +68,6 @@ app.get('/flight/:flightName', (req, res)=>{
     // console.log(data);
   }).catch(err => {
     if(err){
-      //throw err;
       res.status(404).json(`Error: ${err}`);
     }
   })
@@ -94,14 +91,13 @@ app.get('/flights', (req, res) => {
     res.status(200).send(data);
   }).catch(err => {
     if(err){
-      //throw err;
       res.status(404).json(`Error: ${err}`);
     }
   });
 });
 
-/*              RETURN FLIGHTS BY SOURCE & DESTINATION              */
 
+//GET FLIGHTS BY SOURCE AND DESTINATION
 
 /**
  * @swagger
@@ -137,13 +133,14 @@ app.get("/flights/:source/:destination", (req, res) => {
     res.status(200).send(data);
   }).catch(err => {
     if(err){
-      //throw err;
       res.status(400).json(`Error: ${err}`);
     }
   })
 });
 
-                            /* POST Methods */
+
+//POST METHOD
+
 //ADD NEW FLIGHT
 //app.use(express.json());
 /**
@@ -212,14 +209,10 @@ app.post('/flight/add', (req, res)=>{
     console.log('new flight created');
     res.status(200).send(data);
   }).catch((err)=>{
-    if(err){
-      //throw err;
-      res.status(400).json(`Error: ${err}`);
-    }
+    res.status(400).json(`Error: ${err}`);
   })
 });
 
-                            /* PUT Methods */
 //UPDATE FLIGHT     
 
 /**
@@ -266,14 +259,11 @@ app.put('/flight/edit/:id', (req, res) => {
     console.log(`flight updated`);
     res.status(200).send(response);
   }).catch(err => {
-    if(err){
-      //throw err;
-      res.status(400).json(`Error: ${err}`);
-    }
+    res.status(400).json(`Error: ${err}`);
   })
 });
 
-                            /* DELETE Methods */
+
 //DELETE FLIGHT
 /**
  * @swagger
@@ -298,10 +288,7 @@ app.delete('/flight/delete/:flightName', (req, res) => {
     console.log(`${req.params.flightName} flight deleted`);
     res.status(200).send(response);
   }).catch(err => {
-    if(err){
-      //throw err;
-      res.status(400).json(`Error: ${err}`);
-    }
+    res.status(400).json(`Error: ${err}`);
   })
 });
 
@@ -309,38 +296,10 @@ app.delete('/flight/delete/:flightName', (req, res) => {
 
 
 app.listen(3000, (err) => {
-  if(err){
-    console.log(err);
-  }
+  // if(err){
+  //   console.log(err);
+  // }
   console.log("Listening to port 3000");
 })
 
 module.exports = app;
-
-
-//no current use
-//will get by flight id
-// app.get('/flight/:id', (req, res) => {
-//   flight.findById(req.params.id).then((data)=>{
-//     res.send(data);
-//   }).catch(err => {
-//     if(err){
-//       throw err;
-//     }
-//   })
-// });
-
-
-//current no use
-// app.delete('/flight/delete/:id', (req, res) => {
-//   flight.findByIdAndRemove(req.params.id).then((response) => {
-//     //res.send(`${req.params.flightName} flight deleted`);
-//     console.log("flight deleted");
-//     console.log(response);
-//     res.send(response);
-//   }).catch(err => {
-//     if(err){
-//       throw err;
-//     }
-//   })
-// });

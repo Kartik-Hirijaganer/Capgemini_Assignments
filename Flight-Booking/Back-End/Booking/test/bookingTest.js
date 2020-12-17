@@ -39,11 +39,6 @@ describe('GET /booking/all', () => {
             .end((err, response) => {
                 response.should.have.status(200);
                 response.body.should.be.a('array');
-                // response.body.should.have.property('airLine');
-                // response.body.should.have.property('flightName');
-                // response.body.should.have.property('source');
-                // response.body.should.have.property('destination');
-                // response.body.should.have.property('fare');
             done();
             });
     });

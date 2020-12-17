@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BookFlightService } from '../bookService/book-flight.service';
 
 
+
 @Component({
   selector: 'app-main-home',
   templateUrl: './main-home.component.html',
@@ -22,7 +23,6 @@ export class MainHomeComponent implements OnInit {
   isSearchError = false;
   noFLights = false;
 
-  // errorSource = '';
 
   constructor(public _authService: AuthService, public searchService: SearchService, private _router: Router, public dialog: MatDialog, private bookService: BookFlightService) { }
 
@@ -48,15 +48,8 @@ export class MainHomeComponent implements OnInit {
         // console.log(this.searchService.flights);
       });
     }
-    // else{
-    //   this.isSearchError = false;
-    //   this.searchService.getSearchedFlights(form.value.source, form.value.destination).subscribe((res) => {
-    //     this.searchService.flights = res as FlightData[];
-    //     console.log(this.searchService.flights);
-    //   });
-    // }
   }
-
+  options: string[] = ['mumbai', 'delhi', 'punjab', 'chennai', 'bangalore', 'ahmedabad', 'kochin'];
   // refreshFlightList() {
   //   this.searchService.getFlightList().subscribe((res) => {
   //     this.searchService.flights = res as FlightData[];

@@ -23,7 +23,7 @@
 
             <div class="form-group">
               <label for="dateOfBirth">Date Of Birth</label>
-                <input #dateOfBirth="ngModel" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" [(ngModel)]="registerUserData.dateOfBirth" class="form-control" type="date" max="2020-12-13" name="dateOfBirth" id="dateOfBirth" required>
+                <input #dateOfBirth="ngModel" [class.is-invalid]="dateOfBirth.invalid && dateOfBirth.touched" [(ngModel)]="registerUserData.dateOfBirth" class="form-control" type="date" max="2020-12-17" name="dateOfBirth" id="dateOfBirth" required>
                 <small class="text-danger" [class.d-none]="dateOfBirth.valid || dateOfBirth.untouched">Date Of Birth is required</small>
             </div>
 

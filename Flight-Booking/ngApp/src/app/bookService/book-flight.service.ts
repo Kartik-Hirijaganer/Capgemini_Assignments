@@ -67,19 +67,32 @@ export class BookFlightService {
     let d = des.toLowerCase()
     switch(s){
       case "mumbai":
-        this.src = "MUM";
+        this.src = "BOM";
         break;
       case "delhi":
         this.src = "DEL";
+        break;
+      case "bangalore":
+        this.src = "BLR";
+        break;
+      case "ahmedabad":
+        this.src = "AMD";
         break;
     }
 
     switch(d){
       case "mumbai":
-        this.des = "MUM";
+        this.des = "BOM";
         break;
       case "delhi":
         this.des = "DEL";
+        break;
+      case "bangalore":
+        this.des = "BLR";
+        break;
+      case "ahmedabad":
+        this.des = "AMD";
+        break;
     }
 
   }

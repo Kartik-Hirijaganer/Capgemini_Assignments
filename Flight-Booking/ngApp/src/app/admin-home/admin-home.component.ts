@@ -73,13 +73,18 @@ export class AdminHomeComponent implements OnInit {
   }
 
   onDelete(flightName: string, form: NgForm) {
-    if (confirm('Are you sure to delete this record ?') == true) {
-      this.adminService.deleteFlight(flightName).subscribe((res) => {
-        this.refreshFlightList();
-        this.resetForm(form);
-        M.toast({ html: 'Deleted successfully', classes: 'rounded' });
-      });
-    }
+    // if (confirm('Are you sure to delete this record ?') == true) {
+    //   this.adminService.deleteFlight(flightName).subscribe((res) => {
+    //     this.refreshFlightList();
+    //     this.resetForm(form);
+    //     M.toast({ html: 'Deleted successfully', classes: 'rounded' });
+    //   });
+    // }
+    this.adminService.deleteFlight(flightName).subscribe((res) => {
+      this.refreshFlightList();
+      this.resetForm(form);
+      M.toast({ html: 'Deleted successfully', classes: 'rounded' });
+    });
   }
 
 }

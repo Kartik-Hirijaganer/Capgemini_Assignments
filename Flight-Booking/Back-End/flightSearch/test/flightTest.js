@@ -81,7 +81,7 @@ describe('flight API', () => {
             airLine: "Go Air",
             flightName: "GA-300",
             source: "bangalore",
-            destination: "gujrat",
+            destination: "ahmendabad",
             fare: 5000
         };
         chai.request(server)                
@@ -93,7 +93,7 @@ describe('flight API', () => {
                 response.body.should.have.property('airLine').eq("Go Air");
                 response.body.should.have.property('flightName').eq("GA-300");
                 response.body.should.have.property('source').eq("bangalore");
-                response.body.should.have.property('destination').eq("gujrat");
+                response.body.should.have.property('destination').eq("ahmendabad");
                 response.body.should.have.property('fare').eq(5000);
             done();
             });
@@ -105,7 +105,7 @@ describe('flight API', () => {
 
   describe("PUT /flight/edit/:id", () => {
     it("It should PUT an existing flight", (done) => {
-        const id = "5fd76d637692ca1f6889c3a1";
+        const id = "5fd884c17a15ce2e942ac650";
         const flight = {
             airLine: "Air India",
             flightName: "AI-300",

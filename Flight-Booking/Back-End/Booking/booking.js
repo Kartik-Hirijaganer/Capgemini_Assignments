@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-//const axios = require('axios');
 const cors = require('cors');
 
 const sendEmail = require('./sendEmail');
@@ -10,14 +9,15 @@ const sendEmail = require('./sendEmail');
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
-
+//middleware
 app.use(bodyParser.json());
 app.use(cors({origin: 'http://localhost:4200'}));
 
+//mongoose
 const mongoose = require('mongoose');
 
-require('./bookingDataModel');//acquiring our schema file
-const booking = mongoose.model("booking");//assigning schema model to booking constant
+require('./bookingDataModel');
+const booking = mongoose.model("booking");
 
 
 mongoose.connect('mongodb+srv://Kartik:1234@cluster0.nvlfp.mongodb.net/booking_project?retryWrites=true&w=majority', ()=>{
@@ -37,7 +37,7 @@ const swaggerOptions = {
       servers: ["http://localhost:3300"]
     }
   },
-  // ['.routes/*.js']
+
   apis: ["booking.js"]
 };
 
@@ -45,15 +45,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/booking/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-/*
-  when user will checkIn this method will be called and ticket will be displayed.
-*/
-//current no use
-app.get("/bookingById/:bookingId", (req, res)=>{
-  booking.findOne({bookingId: req.params.bookingId}).then((data)=>{
-    res.send(data);
-  })
-});
+
+//GET METHOD
 
 /**
  * @swagger
@@ -77,10 +70,6 @@ app.get("/booking/all", (req, res) => {
   })
 })
 
-/* 
-  When user will click view all bookings this get request will be called
-  It will search in booking db all bookings having that userId(objectId).
-*/
 
 /**
  * @swagger
@@ -123,12 +112,9 @@ app.get('/booking/allbookings/:userId', (req, res) => {
   });
 });
 
-/*POST method will add booking detail when user books flight
-  In angular when user will click book now then in bookNow function
-  we need to pass flightName and userId(objectId)-from url in form of json body
-  Then only this function will work.
-*/
-var bookingId = 111;
+//POST METHOD
+
+var bookingId = 200;
 var userEmail = '';
 app.post("/booking/add/:flightName/:userId", (req, res)=>{
   let flightName = req.params.flightName;
@@ -156,10 +142,11 @@ app.post("/booking/add/:flightName/:userId", (req, res)=>{
     res.status(200).json({bookingId: bookingId});
     bookingId++;
     console.log('booking success');
-    //console.log(emailMsg);
     });
 });
+
 //DELETE BOOKING
+
 /**
  * @swagger
  * /booking/cancel/{bookingId}:
@@ -197,25 +184,3 @@ app.listen(3300, (err) => {
 });
 
 module.exports =  app;
-//old booking post method axios
-// axios.get("http://localhost:3000/flight/"+flightName).then((flight)=>{
-  //   const f = flight.data;
-  //   newBooking = {
-  //     userId: req.params.userId,
-  //     flight:{
-  //       flightName: flightName,
-  //       airLine: f.airLine,
-  //       source: f.source,
-  //       destination: f.destination,
-  //       fare: f.fare,
-  //     },
-  //     bookingId: bookingId
-  //   }
-    
-    // var booking1 = new booking(newBooking);
-    // booking1.save().then(() =>{
-    // res.send("BookingId is :"+bookingId);
-    // bookingId++;
-    //console.log(bookingId);
-      // });
-    // });

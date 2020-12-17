@@ -25,7 +25,7 @@ const swaggerOptions = {
       servers: ["http://localhost:3100"]
     }
   },
-  // ['.routes/*.js']
+
   apis: ["admin.js"]
 };
 
@@ -33,10 +33,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/admin/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-                            /* GET Methods */
 
-
-//GET ALL FLIGHTS
+//GET ALL FLIGHTS METHOD
 
 /**
  * @swagger
@@ -53,17 +51,13 @@ app.use("/admin/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.get('/admin/flights', (req, res) => {
   axios.get("http://localhost:3000/flights").then((response) => {
     res.status(200).send(response.data);
-    //console.log(response);
-  }).catch(err => {
-    if(err){
-      //throw err;
-      res.status(404).json(`Error: ${err}`);
-    }
+  })
+  .catch(err => {
+    res.status(404).json(`Error: ${err}`);
   });
 });
 
-                            /* POST Methods */
-/*                        post method to add new flight by admin                 */
+//POST METHOD
 
 /**
  * @swagger
@@ -128,16 +122,16 @@ app.post('/admin/add/flight', (req, res) => {
   axios.post("http://localhost:3000/flight/add", newFlight).then((response)=>{
    res.status(200).send(response.data);
    console.log("New flight added.");
-  }).catch(err => {
+  })
+  .catch(err => {
     if(err){
-      //throw err;
       res.status(400).json(`Error: ${err}`);
     }
   });
 });
 
-                            /* PUT Methods */
-/*                       put method to edit flight by admin                */
+//PUT METHOD
+
 /**
  * @swagger
  * /admin/edit/flight/{id}:
@@ -181,15 +175,13 @@ app.put('/admin/edit/flight/:id', (req, res) => {
     ).then((response) => {
       //console.log(response.data);
       res.status(200).send(response.data);
-    }).catch(err => {
-      if(err){
-        //throw err;
-        res.status(400).json(`Error: ${err}`);
-      }
+    })
+    .catch(err => {
+      res.status(400).json(`Error: ${err}`);
     });
 });
-                            /* DELETE Methods */
-/*                    delete method to delete flight by admin             */
+
+//DELETE METHOD
 
 /**
  * @swagger
@@ -213,11 +205,8 @@ app.delete('/admin/delete/flight/:flightName', (req, res) => {
   axios.delete(`http://localhost:3000/flight/delete/${req.params.flightName}`).then((response) => {
     //console.log(response.data);
     res.status(200).send(response.data);
-  }).catch(err => {
-    if(err){
-     // throw err;
-     res.status(400).json(`Error: ${err}`);
-    }
+  }).catch( (err) => {
+    res.status(400).json(`Error: ${err}`);
   });
 });
 
@@ -234,33 +223,3 @@ app.listen(3100, (err) => {
 })
 
 module.exports = app;
-
-
-
-
-
-
-
-//current no use
-// app.get('/admin/flight/:id', (req, res)=>{
-//   axios.get("http://localhost:3000/flight/"+req.params.id).then((response) => {
-//     res.send(response);
-//   }).catch(err => {
-//     if(err){
-//       throw err;
-//     }
-//   })
-// });
-
-//current no use
-//get flight by flightName
-// app.get('/admin/flight/:flightName', (req, res)=>{
-//   axios.get("http://localhost:3000/flight/"+req.params.flightName).then((response) => {
-//     //console.log(response);
-//     res.send(response);
-//   }).catch(err => {
-//     if(err){
-//       throw err;
-//     }
-//   })
-// });

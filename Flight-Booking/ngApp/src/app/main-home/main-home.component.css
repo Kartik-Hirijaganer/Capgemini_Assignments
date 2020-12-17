@@ -75,3 +75,16 @@ h1 {
   text-align: center;
   margin-left: 20px;
 }
+
+.container{
+  margin-left: 300px;
+}
+
+::placeholder{
+  color: black;
+}
+
+/* ::ng-deep mat-option {
+  background-color: #00688B;
+} */
+
